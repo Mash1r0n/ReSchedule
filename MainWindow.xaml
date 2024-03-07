@@ -1,0 +1,120 @@
+﻿<Window x:Class="ReSchedule.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReSchedule"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="#041723">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto"  VerticalScrollBarVisibility="Hidden" x:Name="Registration"  >
+            <Grid Width="6168" Background="#041723">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1028"/>
+                    <ColumnDefinition Width="1028"/>
+                    <ColumnDefinition Width="1028"/>
+                    <ColumnDefinition Width="1028"/>
+                    <ColumnDefinition Width="1028"/>
+                    <ColumnDefinition Width="1028"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Background="Pink" Grid.Column="0"/>
+                
+                <StackPanel Background="#041723" Grid.Column="1">
+                    <TextBlock Margin="0,74,0,0" FontFamily="Roboto" FontSize="36" Foreground="#CED6E3" TextAlignment="Center" Height="78">
+                        Для початку роботи необхідні дані
+                    </TextBlock>
+                    <TextBlock FontFamily="Inter" FontSize="16" Foreground="#CED6E3" TextAlignment="Center" Height="45">
+                        Оберіть спосіб занесення даних
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle Width="262" Height="285" Stroke="#C4C4C4" StrokeThickness="3" RadiusX="30" RadiusY="30">
+
+                            </Rectangle>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\DropHere.png" Width="59" Height="59" Margin="5,0,9.5,0"/>
+                                <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> Використати файл (якщо є)</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <TextBlock FontFamily="Inter" FontSize="16" Foreground="#CED6E3" TextAlignment="Center" VerticalAlignment="Center" Width="88">або</TextBlock>
+                        
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle Width="262" Height="285" Stroke="#C4C4C4" StrokeThickness="3" RadiusX="30" RadiusY="30">
+
+                            </Rectangle>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\WriteHere.png" Width="59" Height="59" Margin="0,0,9.5,0"/>
+                                <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> Заповнити дані вручну</TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Background="Blue" Grid.Column="2"/>
+                
+                <StackPanel Background="Green" Grid.Column="3"/>
+                
+                <StackPanel Background="Gray" Grid.Column="4"/>
+                
+                <StackPanel Background="Aqua" Grid.Column="5"/>
+            </Grid>
+        </ScrollViewer>
+        
+        <Grid x:Name="Header" Background="#233350" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="40">
+                </ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="DragMove" Grid.Column="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="Transparent"/>
+
+            <Grid x:Name="ToLowWindow" Grid.Column="1" MouseLeftButtonUp="ToLowWindow_MouseLeftButtonUp">
+                <Separator Grid.Column="1" Width="12"/>
+                
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#576276"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+
+            <Grid x:Name="CloseWindow" Grid.Column="2" MouseLeftButtonUp="CloseWindow_MouseLeftButtonUp">
+                
+                <Separator Grid.Column="1" Width="12">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="45"/>
+                    </Separator.LayoutTransform>
+                </Separator>
+                <Separator Grid.Column="1" Width="12">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="-45"/>
+                    </Separator.LayoutTransform>
+                </Separator>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C41B1B"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
