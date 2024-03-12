@@ -12,7 +12,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto"  VerticalScrollBarVisibility="Hidden" x:Name="Registration"  >
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto"  VerticalScrollBarVisibility="Hidden" x:Name="Registration"  Margin="-6168,0,0,0">
             <Grid Width="6168" Background="#041723">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1028"/>
@@ -23,7 +23,25 @@
                     <ColumnDefinition Width="1028"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Background="Pink" Grid.Column="0"/>
+                <StackPanel Background="#041723" Grid.Column="0">
+                    <TextBlock Width="1028" Height="106" TextAlignment="Center" FontFamily="Roboto" FontSize="36" Foreground="#CED6E3" Padding="0,60,0,0">Отже, у вас є файл з потрібними даними</TextBlock>
+                    <TextBlock Width="1028" Height="57" TextAlignment="Center" FontFamily="Inter" FontSize="16" Foreground="#CED6E3" Padding="0,3,0,0">У разі успішного зчитування даних, ви одразу зможете приступити до користування програмою</TextBlock>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Rectangle AllowDrop="True" Width="632px" Height="321px" Stroke="#C4C4C4" Fill="Transparent" StrokeThickness="3" RadiusX="30" RadiusY="30"> <!--Сделать так, что если начинается дроп - сделать невидимыми элемент в центре--> 
+                            <Rectangle.StrokeDashArray>
+                                <DoubleCollection>
+                                    3
+                                </DoubleCollection>
+                            </Rectangle.StrokeDashArray>
+                        </Rectangle>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\DropHere.png" Width="59" Height="59" Margin="5,0,9.5,0"/>
+                            <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> Перетягніть сюди файл формату .drs</TextBlock>
+                            <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> або</TextBlock>
+                            <TextBlock x:Name="ChooseTheFile" FontFamily="Inter"  FontWeight="Bold" Foreground="#438EAD" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"><Underline>оберіть його</Underline></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
                 
                 <StackPanel Background="#041723" Grid.Column="1">
                     <TextBlock Margin="0,74,0,0" FontFamily="Roboto" FontSize="36" Foreground="#CED6E3" TextAlignment="Center" Height="78">
@@ -56,8 +74,24 @@
                         </Grid>
                     </StackPanel>
                 </StackPanel>
-                
-                <StackPanel Background="Blue" Grid.Column="2"/>
+
+                <StackPanel Background="#041723" Grid.Column="2">
+                    <StackPanel Orientation="Vertical" x:Name="StageBar" Height="114" VerticalAlignment="Center"> 
+                        
+                    </StackPanel>
+                    <TextBlock Height="139" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Roboto" FontSize="36" Padding="0,39,0,0">Отже, ви вирішили ввести дані вручну</TextBlock>
+                    <TextBlock Height="45" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Inter" FontSize="16" >Перед тим, як почати користуватись програмою, ви маєте пройти через 5 етапів, що займуть у вас приблизно 7 хвилин</TextBlock>
+                    <Button Width="447" Height="45"  Margin="0,148,0,0" Background="#6C798F">
+                        <TextBlock FontSize="16px" FontWeight="Bold" Foreground="#041723">ПЕРЕЙТИ ДО ЗАПОВНЕННЯ</TextBlock>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="10">
+                                    <ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
                 
                 <StackPanel Background="Green" Grid.Column="3"/>
                 

@@ -22,6 +22,12 @@ namespace ReSchedule
         {
             InitializeComponent();
             Registration.ScrollToHorizontalOffset(1028);
+
+            FormPanel.CreateBlock("AAA");
+            FormPanel.CreateBlock("BBB");
+            FormPanel.CreateBlock("CCC");
+
+            StageBar.Children.Add(FormPanel.ReturnCompletedPanel());
         }
 
         private void CloseWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
