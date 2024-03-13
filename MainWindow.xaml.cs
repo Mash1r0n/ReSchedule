@@ -20,6 +20,9 @@ namespace ReSchedule
         private Point anchorPoint;
         public MainWindow()
         {
+            const int MinutesForRegistration = 7;
+            const string TextAfterMinutesStages = "хвилин";
+
             InitializeComponent();
             Registration.ScrollToHorizontalOffset(1028);
 
@@ -28,6 +31,8 @@ namespace ReSchedule
             FormPanel.CreateBlock("CCC");
 
             StageBar.Children.Add(FormPanel.ReturnCompletedPanel());
+
+            TextOnStartRegistration.Text = $"Перед тим, як почати користуватись програмою, ви маєте пройти через {FormPanel.ReturnCountOfStages()} етапи(-ів), що займуть у вас приблизно {MinutesForRegistration} {TextAfterMinutesStages}";
         }
 
         private void CloseWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

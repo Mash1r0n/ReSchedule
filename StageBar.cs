@@ -352,6 +352,12 @@ namespace ReSchedule
 
         static int PreCount = 0;
         static int Count = 0;
+
+        public static int ReturnCountOfStages() 
+        {
+            return StagesInBlock.Count();
+        }
+
         public static void CreateBlock(string TheBlockName)
         {
             StageBar StageObject = new StageBar(TheBlockName);
@@ -424,7 +430,7 @@ namespace ReSchedule
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#041723")),
-                Margin = new Thickness(0, 50, 0, 0),
+                Margin = new Thickness(0, 30, 0, 0),
                 Name = "MidPan"
             };
 
