@@ -101,7 +101,8 @@
 
                     </StackPanel>
 
-                    <TextBlock Text="Спершу заповніть заняття на кожній будній день" Height="66" TextAlignment="Center" Padding="0,15,0,0" Margin="0,14,0,0" Foreground="#CED6E3" FontFamily="Roboto" FontSize="30" />
+                    <TextBlock Text="Спершу заповніть заняття на кожній будній день" Height="36" TextAlignment="Center" Margin="0,0,0,14" Foreground="#CED6E3" FontFamily="Roboto" FontSize="30" />
+                    <TextBlock Text="Якщо заняття немає, використайте символ мінусу" Height="30" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Roboto" FontSize="16" />
 
                     <Border Width="987" Height="395" CornerRadius="30" Background="#0D1D33">
                         <Grid Width="987" Height="395">
@@ -126,38 +127,74 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <Grid x:Name="MondayLessons" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Vertical" >
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                    <Grid>
+                                        <Grid Visibility="Visible" x:Name="MondayLessonsC" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="M6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                        </Grid>
+
+                                        <Grid Visibility="Hidden" x:Name="MondayLessonsSn" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M1Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M2Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M3Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M4Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M5Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="M6Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -170,43 +207,79 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <Grid x:Name="ThuesdayLessons" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Vertical" >
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                    <Grid>
+                                        <Grid Visibility="Visible" x:Name="ThuesdayLessonsC" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TU6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                        </Grid>
+
+                                        <Grid Visibility="Hidden" x:Name="ThuesdayLessonsSn" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU1Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU2Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU3Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU4Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU5Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TU6Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                 </StackPanel>
                             </Border>
 
-                            <Border Background="#233350" Width="305" Margin="5,5,0,0" Height="184" Grid.Row="0" Grid.Column="4" CornerRadius="25">
+                            <Border Background="#233350" Width="305" Margin="0,5,5,0" Height="184" Grid.Row="0" Grid.Column="4" CornerRadius="25">
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Margin="17,8,0,0" FontFamily="Nunito" Foreground="#CED6E3" FontSize="16" HorizontalAlignment="Left" >
@@ -214,43 +287,79 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <Grid x:Name="WednesdayLessons" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Vertical" >
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                    <Grid>
+                                        <Grid Visibility="Visible" x:Name="WednesdayLessonsC" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="W6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                        </Grid>
+
+                                        <Grid Visibility="Hidden" x:Name="WednesdayLessonsSn" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W1Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W2Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W3Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W4Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W5Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="W6Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                 </StackPanel>
                             </Border>
 
-                            <Border Background="#233350" Width="305" Margin="5,5,0,0" Height="184" Grid.Row="2" Grid.Column="0" CornerRadius="25">
+                            <Border Background="#233350" Width="305" Margin="5,0,0,5" Height="184" Grid.Row="2" Grid.Column="0" CornerRadius="25">
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Margin="17,8,0,0" FontFamily="Nunito" Foreground="#CED6E3" FontSize="16" HorizontalAlignment="Left" >
@@ -258,43 +367,79 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <Grid x:Name="ThursdayLessons" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Vertical" >
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                    <Grid>
+                                        <Grid Visibility="Visible" x:Name="ThursdayLessonsC" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="TH6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                        </Grid>
+
+                                        <Grid Visibility="Hidden" x:Name="ThursdayLessonsSn" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH1Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH2Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH3Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH4Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH5Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="TH6Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                 </StackPanel>
                             </Border>
 
-                            <Border Background="#233350" Width="305" Margin="5,5,0,0" Height="184" Grid.Row="2" Grid.Column="2" CornerRadius="25">
+                            <Border Background="#233350" Width="305" Margin="0,0,0,5" Height="184" Grid.Row="2" Grid.Column="2" CornerRadius="25">
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Margin="17,8,0,0" FontFamily="Nunito" Foreground="#CED6E3" FontSize="16" HorizontalAlignment="Left" >
@@ -302,41 +447,106 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <Grid x:Name="FridayLessons" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Vertical" >
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                    <Grid>
+                                        <Grid Visibility="Visible" x:Name="FridayLessonsC" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F1C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F2C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F3C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F4C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                            </StackPanel>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F5C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
 
-                                            <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
-                                                <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
-                                                <TextBox x:Name="F6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F6C" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                        </Grid>
+
+                                        <Grid Visibility="Hidden" x:Name="FridayLessonsSn" Margin="0,10,0,0">
+                                            <StackPanel Orientation="Vertical" >
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="1 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F1Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="2 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F2Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="3 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F3Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="4 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F4Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="5 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F5Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+
+                                                <StackPanel Width="277" HorizontalAlignment="Left" Margin="17,0,0,3" Orientation="Horizontal">
+                                                    <TextBlock Text="6 >" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                    <TextBox x:Name="F6Sn" Style="{StaticResource SetTime}" MaxLength="33" Margin="5,0,0,0" Width="245" Height=" 18.5" FontFamily="Nunito" FontSize="16" Foreground="#CED6E3"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                 </StackPanel>
                             </Border>
+
+                            <Grid Grid.Row="2" Grid.Column="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <ToggleButton Margin="0,0,5,0" Style="{StaticResource SetWeek}" BorderThickness="0" Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal" Width="305" Height="87">
+                                        <Image Margin="29,0,0,0" Width="36" HorizontalAlignment="Left" Height="36" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\UpArrow.png">
+                                            <Image.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </Image.LayoutTransform>
+                                        </Image>
+                                        <TextBlock Text="Чисельник" Margin="39,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="30"/>
+                                    </StackPanel>
+                                </ToggleButton>
+                                <ToggleButton Margin="0,0,5,5" Style="{StaticResource SetWeek}" BorderThickness="0" Grid.Row="2">
+                                    <StackPanel Orientation="Horizontal" Width="305" Height="87">
+                                        <Image Margin="29,0,0,0" Width="36" HorizontalAlignment="Left" Height="36" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\UpArrow.png">
+                                            <Image.LayoutTransform>
+                                                <RotateTransform Angle="90"/>
+                                            </Image.LayoutTransform>
+                                        </Image>
+                                        <TextBlock Text="Знаменник" Margin="39,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="30"/>
+                                    </StackPanel>
+                                </ToggleButton>
+                            </Grid>
                         </Grid>
                     </Border>
 
