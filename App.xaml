@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="InputLessons.xaml"/>
+                <ResourceDictionary Source="RegistrationSettings.xaml"/>
+                <ResourceDictionary Source="ManageStageButtons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -14,6 +14,7 @@ using ColorConverter = System.Windows.Media.ColorConverter;
 using Point = System.Windows.Point;
 using Rectangle = System.Windows.Shapes.Rectangle;
 
+
 namespace ReSchedule
 {
     interface InitStage
@@ -431,10 +432,13 @@ namespace ReSchedule
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#041723")),
                 Margin = new Thickness(0, 30, 0, 0),
+                
                 Name = "MidPan"
             };
 
             int ForeachCount = 0;
+
+            Grid.SetColumn(mid, 1);
 
             foreach (StageBar stage in StagesInBlock)
             {

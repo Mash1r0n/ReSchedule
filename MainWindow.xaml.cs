@@ -31,7 +31,9 @@ namespace ReSchedule
             FormPanel.CreateBlock("BBB");
             FormPanel.CreateBlock("CCC");
 
-            StageBar.Children.Add(FormPanel.ReturnCompletedPanel());
+            
+
+            StageLine.Children.Add(FormPanel.ReturnCompletedPanel());
 
             TextOnStartRegistration.Text = $"Перед тим, як почати користуватись програмою, ви маєте пройти через {FormPanel.ReturnCountOfStages()} {TextForStages}, що займуть у вас приблизно {MinutesForRegistration} {TextAfterMinutesStages}";
         }
