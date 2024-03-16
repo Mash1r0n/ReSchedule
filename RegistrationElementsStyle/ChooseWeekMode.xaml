@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="UpWeekMode" TargetType="RadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <Border x:Name="BackgroundOfRB"  CornerRadius="25" Background="#233350"/>
+                        <StackPanel Orientation="Horizontal" Width="305" Height="87">
+                            <Image Margin="29,0,0,0" Width="36" HorizontalAlignment="Left" Height="36" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\UpArrow.png">
+                                <Image.LayoutTransform>
+                                    <RotateTransform Angle="-90"/>
+                                </Image.LayoutTransform>
+                            </Image>
+                            <TextBlock Text="Чисельник" Margin="39,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="30"/>
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="BackgroundOfRB" Property="Background" Value="#6C798F" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="BackgroundOfRB" Property="Background" Value="#2E4162"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DownWeekMode" TargetType="RadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <Border x:Name="BackgroundOfRB"  CornerRadius="25" Background="#233350"/>
+                        <StackPanel Orientation="Horizontal" Width="305" Height="87">
+                            <Image Margin="29,0,0,0" Width="36" HorizontalAlignment="Left" Height="36" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\UpArrow.png">
+                                <Image.LayoutTransform>
+                                    <RotateTransform Angle="90"/>
+                                </Image.LayoutTransform>
+                            </Image>
+                            <TextBlock Text="Знаменник" Margin="39,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="30"/>
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="BackgroundOfRB" Property="Background" Value="#6C798F" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="BackgroundOfRB" Property="Background" Value="#2E4162"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

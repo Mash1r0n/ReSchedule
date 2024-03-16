@@ -6,9 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="InputLessons.xaml"/>
-                <ResourceDictionary Source="RegistrationSettings.xaml"/>
-                <ResourceDictionary Source="ManageStageButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\InputLessons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\RegistrationSettings.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ManageStageButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseRegistrationMethodButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseWeekMode.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
