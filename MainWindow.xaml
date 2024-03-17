@@ -12,8 +12,116 @@
             <RowDefinition Height="21"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Panel.ZIndex="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11"/>
+                <ColumnDefinition Width="59"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="14"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="76"/>
+                <RowDefinition/>
+                <RowDefinition Height="21"/>
+            </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto"  VerticalScrollBarVisibility="Hidden" x:Name="Registration"  >
+            <Border Background="#0D1D33" CornerRadius="30" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+                <StackPanel Orientation="Vertical">
+                    <Image Width="50" Height="50" Margin="0,6,0,0" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\icon.png"/>
+                    <Border Width="50" Height="50" Margin="0,115,0,0" CornerRadius="30">
+                        <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\AllLessons.png"/>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#6C798F"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <Border Width="50" Height="50" Margin="0,9,0,0" CornerRadius="30">
+                        <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Settings.png"/>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#6C798F"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <Border Width="50" Height="50" Margin="0,9,0,0" CornerRadius="30">
+                        <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Author.png"/>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#6C798F"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="155"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <TextBlock x:Name="TodaysDay" Foreground="#CED6E3" FontSize="31" FontFamily="Roboto">
+                        <Run FontWeight="Regular">
+                            LoremIpsu
+                        </Run>
+                    </TextBlock>
+                    <TextBlock x:Name="WeekModeNow" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                        <Run FontWeight="Light">
+                            LoremIpsu
+                        </Run>
+                    </TextBlock>
+                </StackPanel>
+                <Grid Grid.Column="2">
+                    <TextBlock Foreground="#CED6E3" FontFamily="Roboto" FontSize="31" VerticalAlignment="Center" TextAlignment="Center">
+                        <Run FontWeight="Regular">
+                            99 : 99
+                        </Run>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+
+            <Border Grid.Row="2" Grid.Column="3" Background="#0D1D33" CornerRadius="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="14"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="19"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="14"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="14"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="29"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="29"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="14"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto" Panel.ZIndex="1" VerticalScrollBarVisibility="Hidden" x:Name="Registration" Margin="-6168,0,0,0" Visibility="Hidden">
             <Grid Width="6168" Background="#041723">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1028"/>
@@ -84,7 +192,7 @@
                     </StackPanel>
                     <TextBlock Height="139" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Roboto" FontSize="36" Padding="0,39,0,0">Отже, ви вирішили ввести дані вручну</TextBlock>
                     <TextBlock x:Name="TextOnStartRegistration" Height="45" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Inter" FontSize="16" ></TextBlock>
-                    <Button Width="447" Height="45"  Margin="0,148,0,0">
+                    <Button Width="447" Height="45"  Margin="0,148,0,0" BorderThickness="0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#6C798F" />
@@ -690,7 +798,7 @@
                             Усі необхідні етапи було пройдено!
                         </Run>
                     </TextBlock>
-                    <Button Width="447" Height="45"  Margin="0,69,0,0" >
+                    <Button Width="447" Height="45"  Margin="0,69,0,0" BorderThickness="0">
                         <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#6C798F" />
