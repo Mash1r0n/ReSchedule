@@ -91,7 +91,7 @@
                     </TextBlock>
                 </StackPanel>
                 <Grid Grid.Column="2">
-                    <TextBlock Foreground="#CED6E3" FontFamily="Roboto" FontSize="31" VerticalAlignment="Center" TextAlignment="Center">
+                    <TextBlock x:Name="CurrentTime" Foreground="#CED6E3" FontFamily="Roboto" FontSize="31" VerticalAlignment="Center" TextAlignment="Center">
                         <Run FontWeight="Regular">
                             99 : 99
                         </Run>
@@ -117,6 +117,70 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="14"/>
                     </Grid.ColumnDefinitions>
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Foreground="#CED6E3" FontSize="18" FontFamily="Nunito" Margin="0,10,0,0">
+                                <Run FontWeight="Regular">
+                                    Перше заняття
+                                </Run>
+                            </TextBlock>
+                            <Grid Grid.Row="1" Grid.Column="1">
+                                <StackPanel Margin="0,11,0,0" Orientation="Vertical">
+                                    <TextBlock x:Name="LessonName1" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
+                                        <Run FontWeight="Regular">
+                                            Українська мова за пров спрямуванням
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonBegin1" Foreground="#96A0B3" FontSize="16" Margin="0,36,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Початок: 9:00
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonEnd1" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Кінець: 10:20
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonStatus1" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            До закінчення (хв): Завершена
+                                        </Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="3">
+
+                    </Border>
+
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="5">
+
+                    </Border>
+
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="1">
+
+                    </Border>
+
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="3">
+
+                    </Border>
+
+                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="5">
+
+                    </Border>
                 </Grid>
             </Border>
         </Grid>
