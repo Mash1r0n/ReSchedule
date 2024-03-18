@@ -30,45 +30,15 @@
             <Border Background="#0D1D33" CornerRadius="30" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
                 <StackPanel Orientation="Vertical">
                     <Image Width="50" Height="50" Margin="0,6,0,0" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\icon.png"/>
-                    <Border Width="50" Height="50" Margin="0,115,0,0" CornerRadius="30">
+                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,115,0,0">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\AllLessons.png"/>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#6C798F"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                    <Border Width="50" Height="50" Margin="0,9,0,0" CornerRadius="30">
+                    </Button>
+                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,9,0,0">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Settings.png"/>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#6C798F"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                    <Border Width="50" Height="50" Margin="0,9,0,0" CornerRadius="30">
+                    </Button>
+                    <Button Style="{StaticResource SideMenuButtons}" Margin="0,9,0,0" Click="AuthorButton_Click">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Author.png"/>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#6C798F"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
+                    </Button>
                 </StackPanel>
             </Border>
 
@@ -222,34 +192,34 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="1" Foreground="#CED6E3" FontSize="18" FontFamily="Nunito" Margin="0,10,0,0">
-        <Run FontWeight="Regular">
-            Друге заняття
-        </Run>
+                                <Run FontWeight="Regular">
+                                    Третє заняття
+                                </Run>
                             </TextBlock>
                             <Grid x:Name="LessonsInfo3" Grid.Row="1" Grid.Column="1" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName3" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
-                <Run FontWeight="Regular">
-                    Українська мова за пров спрямуванням
-                </Run>
+                                        <Run FontWeight="Regular">
+                                            Українська мова за пров спрямуванням
+                                        </Run>
                                     </TextBlock>
 
                                     <TextBlock x:Name="LessonBegin3" Foreground="#96A0B3" FontSize="16" Margin="0,36,0,0" FontFamily="Nunito">
-                <Run FontWeight="Regular">
-                    Початок: 9:00
-                </Run>
+                                        <Run FontWeight="Regular">
+                                            Початок: 9:00
+                                        </Run>
                                     </TextBlock>
 
                                     <TextBlock x:Name="LessonEnd3" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
-                <Run FontWeight="Regular">
-                    Кінець: 10:20
-                </Run>
+                                        <Run FontWeight="Regular">
+                                            Кінець: 10:20
+                                        </Run>          
                                     </TextBlock>
 
                                     <TextBlock x:Name="LessonStatus3" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
-                <Run FontWeight="Regular">
-                    До закінчення (хв): Завершена
-                </Run>
+                                        <Run FontWeight="Regular">
+                                            До закінчення (хв): Завершена
+                                        </Run>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
@@ -259,15 +229,144 @@
                     </Border>
 
                     <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Foreground="#CED6E3" FontSize="18" FontFamily="Nunito" Margin="0,10,0,0">
+                                <Run FontWeight="Regular">
+                                    Четверте заняття
+                                </Run>
+                            </TextBlock>
+                            <Grid x:Name="LessonsInfo4" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                                <StackPanel Margin="0,11,0,0" Orientation="Vertical">
+                                    <TextBlock x:Name="LessonName4" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
+                                        <Run FontWeight="Regular">
+                                            Українська мова за пров спрямуванням
+                                        </Run>
+                                    </TextBlock>
 
+                                    <TextBlock x:Name="LessonBegin4" Foreground="#96A0B3" FontSize="16" Margin="0,36,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Початок: 9:00
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonEnd4" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Кінець: 10:20
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonStatus4" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            До закінчення (хв): Завершена
+                                        </Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <Rectangle x:Name="WithoutLesson4" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </Grid>
                     </Border>
 
                     <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="3">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Foreground="#CED6E3" FontSize="18" FontFamily="Nunito" Margin="0,10,0,0">
+                                <Run FontWeight="Regular">
+                                    П'яте заняття
+                                </Run>
+                            </TextBlock>
+                            <Grid x:Name="LessonsInfo5" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                                <StackPanel Margin="0,11,0,0" Orientation="Vertical">
+                                    <TextBlock x:Name="LessonName5" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
+                                        <Run FontWeight="Regular">
+                                            Українська мова за пров спрямуванням
+                                        </Run>          
+                                    </TextBlock>
 
+                                    <TextBlock x:Name="LessonBegin5" Foreground="#96A0B3" FontSize="16" Margin="0,36,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Початок: 9:00
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonEnd5" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Кінець: 10:20
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonStatus5" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            До закінчення (хв): Завершена
+                                        </Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <Rectangle x:Name="WithoutLesson5" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </Grid>
                     </Border>
 
                     <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Foreground="#CED6E3" FontSize="18" FontFamily="Nunito" Margin="0,10,0,0">
+                                <Run FontWeight="Regular">
+                                    Шосте заняття
+                                </Run>
+                            </TextBlock>
+                            <Grid x:Name="LessonsInfo6" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                                <StackPanel Margin="0,11,0,0" Orientation="Vertical">
+                                    <TextBlock x:Name="LessonName6" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
+                                        <Run FontWeight="Regular">
+                                            Українська мова за пров спрямуванням
+                                        </Run>
+                                    </TextBlock>
 
+                                    <TextBlock x:Name="LessonBegin6" Foreground="#96A0B3" FontSize="16" Margin="0,36,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Початок: 9:00
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonEnd6" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            Кінець: 10:20
+                                        </Run>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="LessonStatus6" Foreground="#96A0B3" FontSize="16" Margin="0,5,0,0" FontFamily="Nunito">
+                                        <Run FontWeight="Regular">
+                                            До закінчення (хв): Завершена
+                                        </Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <Rectangle x:Name="WithoutLesson6" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </Grid>
                     </Border>
                 </Grid>
             </Border>

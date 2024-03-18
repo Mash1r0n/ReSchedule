@@ -57,5 +57,10 @@ namespace ReSchedule
         {
 
         }
+
+        private void AuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

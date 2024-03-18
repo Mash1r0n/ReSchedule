@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ManageStageButtons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseRegistrationMethodButtons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseWeekMode.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SideMenuOnHomePage.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
