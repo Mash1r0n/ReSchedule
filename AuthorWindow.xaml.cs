@@ -23,5 +23,10 @@ namespace ReSchedule
         {
             InitializeComponent();
         }
+
+        private void XButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -27,10 +27,11 @@
                 <RowDefinition Height="21"/>
             </Grid.RowDefinitions>
 
-            <Border Background="#0D1D33" CornerRadius="30" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <Image Width="55" Height="55" Grid.Column="1" VerticalAlignment="Top" Grid.Row="1"  Margin="0,3,0,0" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\icn.png"/>
+
+            <Border Background="#0D1D33" CornerRadius="30" Grid.Column="1" Grid.Row="2" Grid.RowSpan="1">
                 <StackPanel Orientation="Vertical">
-                    <Image Width="50" Height="50" Margin="0,6,0,0" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\icon.png"/>
-                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,115,0,0">
+                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,135,0,0">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\AllLessons.png"/>
                     </Button>
                     <Button Style="{StaticResource SideMenuButtons}"  Margin="0,9,0,0">
@@ -102,7 +103,9 @@
                                     Перше заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo1" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                            
+                            <Rectangle x:Name="WithoutLesson1" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo1" Background="#233350" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName1" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -130,7 +133,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson1" Visibility="VIsible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            
                         </Grid>
                     </Border>
 
@@ -149,7 +152,9 @@
                                     Друге заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo2" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+
+                            <Rectangle x:Name="WithoutLesson2" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo2" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName2" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -177,7 +182,6 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson2" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
                         </Grid>
                     </Border>
 
@@ -196,7 +200,9 @@
                                     Третє заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo3" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                            
+                            <Rectangle x:Name="WithoutLesson3" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo3" Grid.Row="1" Background="#233350" Grid.Column="1" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName3" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -224,7 +230,6 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson3" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
                         </Grid>
                     </Border>
 
@@ -243,7 +248,9 @@
                                     Четверте заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo4" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+
+                            <Rectangle x:Name="WithoutLesson4" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo4" Grid.Row="1"  Grid.Column="1" Background="#233350" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName4" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -271,7 +278,6 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson4" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
                         </Grid>
                     </Border>
 
@@ -290,7 +296,9 @@
                                     П'яте заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo5" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+
+                            <Rectangle x:Name="WithoutLesson5" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo5" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName5" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -318,7 +326,6 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson5" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
                         </Grid>
                     </Border>
 
@@ -337,7 +344,9 @@
                                     Шосте заняття
                                 </Run>
                             </TextBlock>
-                            <Grid x:Name="LessonsInfo6" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+
+                            <Rectangle x:Name="WithoutLesson6" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo6" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName6" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -365,14 +374,13 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Rectangle x:Name="WithoutLesson6" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
                         </Grid>
                     </Border>
                 </Grid>
             </Border>
         </Grid>
-        
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="auto" Panel.ZIndex="1" VerticalScrollBarVisibility="Hidden" x:Name="Registration" Margin="-6168,0,0,0" Visibility="Hidden">
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="3" VerticalScrollBarVisibility="Hidden" x:Name="Registration" Visibility="Hidden">
             <Grid Width="6168" Background="#041723">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1028"/>
@@ -391,7 +399,7 @@
                             <ColumnDefinition Width="73"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="1" Height="106" TextAlignment="Center" FontFamily="Roboto" FontSize="36" Foreground="#CED6E3" Padding="0,60,0,0">Отже, у вас є файл з потрібними даними</TextBlock>
-                        <Button  Grid.Column="2" Style="{StaticResource ManageStageButtonsRightByDropFile}"/>
+                        <Button Grid.Column="2" Style="{StaticResource ManageStageButtonsRightByDropFile}" Click="BackFromDrop_Click"/>
                     </Grid>
                     <TextBlock Width="1028" Height="57" TextAlignment="Center" FontFamily="Inter" FontSize="16" Foreground="#CED6E3" Padding="0,3,0,0">У разі успішного зчитування даних, ви одразу зможете приступити до користування програмою</TextBlock>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -411,7 +419,7 @@
                     </Grid>
                 </StackPanel>
                 
-                <StackPanel Background="#041723" Grid.Column="1">
+                <StackPanel Grid.Column="1">
                     <TextBlock Margin="0,74,0,0" FontFamily="Roboto" FontSize="36" Foreground="#CED6E3" TextAlignment="Center" Height="78">
                         Для початку роботи необхідні дані
                     </TextBlock>
@@ -420,7 +428,7 @@
                     </TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Button Style="{StaticResource DropFileButton}" Width="262" Height="285">
+                            <Button Style="{StaticResource DropFileButton}" Width="262" Height="285" Click="DripFilePage_Click">
                                 
                             </Button>
                         </Grid>
@@ -428,7 +436,7 @@
                         <TextBlock FontFamily="Inter" FontSize="16" Foreground="#CED6E3" TextAlignment="Center" VerticalAlignment="Center" Width="88">або</TextBlock>
                         
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Button Style="{StaticResource FillByHandButton}" Width="262" Height="285">
+                            <Button Style="{StaticResource FillByHandButton}" Width="262" Height="285" Click="ScrollRight_Click">
 
                             </Button>
                         </Grid>
@@ -437,13 +445,13 @@
 
                 
                 
-                <StackPanel Background="#041723" Grid.Column="2">
+                <StackPanel Background="Transparent" Grid.Column="2">
                     <StackPanel Orientation="Vertical"  Height="85" VerticalAlignment="Center"> 
                         
                     </StackPanel>
                     <TextBlock Height="139" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Roboto" FontSize="36" Padding="0,39,0,0">Отже, ви вирішили ввести дані вручну</TextBlock>
                     <TextBlock x:Name="TextOnStartRegistration" Height="45" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Inter" FontSize="16" ></TextBlock>
-                    <Button Width="447" Height="45"  Margin="0,148,0,0" BorderThickness="0">
+                    <Button Width="447" Height="45"  Margin="0,148,0,0" BorderThickness="0" Click="ScrollRight_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#6C798F" />
@@ -895,10 +903,10 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
 
-                                <RadioButton IsChecked="True" Margin="0,0,5,0" Style="{StaticResource UpWeekMode}" BorderThickness="0" Grid.Row="0">
+                                <RadioButton IsChecked="True" Margin="0,0,5,0" Style="{StaticResource UpWeekMode}" BorderThickness="0" Grid.Row="0" Checked="UpWeekButton">
                                     
                                 </RadioButton>
-                                <RadioButton Margin="0,0,5,5" Style="{StaticResource DownWeekMode}" BorderThickness="0" Grid.Row="2">
+                                <RadioButton Margin="0,0,5,5" Style="{StaticResource DownWeekMode}" BorderThickness="0" Grid.Row="2" Checked="DownWeekButton">
                                     
                                 </RadioButton>
                             </Grid>
@@ -931,19 +939,7 @@
                                         Повідомлення
                                     </Run>
                                 </TextBlock>
-                                <Grid Margin="0,18,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="80"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3" Padding="0,3,0,0" Margin="21,0,0,0">
-                                        <Run FontWeight="Light">
-                                            Отримувати повідомлення
-                                        </Run>
-                                    </TextBlock>
-                                    <ToggleButton Grid.Column="1" x:Name="ReceiveMessages" HorizontalAlignment="Left" Style="{StaticResource ToggleButtonStyle}"/>
-                                </Grid>
+                               
 
                                 <Grid Margin="0,18,0,0">
                                     <Grid.ColumnDefinitions>
@@ -1049,7 +1045,7 @@
                             Усі необхідні етапи було пройдено!
                         </Run>
                     </TextBlock>
-                    <Button Width="447" Height="45"  Margin="0,69,0,0" BorderThickness="0">
+                    <Button Width="447" Height="45"  Margin="0,69,0,0" BorderThickness="0" Click="EndOfRegister_Click">
                         <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#6C798F" />
@@ -1071,18 +1067,18 @@
                     </Button>
                 </StackPanel>
 
-                <Grid Grid.Column="2" Grid.ColumnSpan="3" x:Name="StageLine" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1028" Height="85">
+                <Grid Grid.Column="2" Grid.ColumnSpan="4" x:Name="StageLine" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1028" Height="85">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="67"/>
+                        <ColumnDefinition Width="90"/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="67"/>
+                        <ColumnDefinition Width="90"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Grid.Column="0">
-                        <Button Style="{StaticResource ManageStageButtonsLeft}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0">
+                        <Button x:Name="PreviousScroll" Style="{StaticResource ManageStageButtonsLeft}" Click="ScrollLeft_Click"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Column="2">
-                        <Button Style="{StaticResource ManageStageButtonsRight}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="2">
+                        <Button x:Name="NextScroll" Width="67" Style="{StaticResource ManageStageButtonsRight}" Click="ScrollRight_Click"/>
                     </StackPanel>
                 </Grid>
             </Grid>

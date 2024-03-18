@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReSchedule"
         mc:Ignorable="d"
-        Title="AuthorWindow"  WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="Transparent">
+        Title="AuthorWindow"  WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="Transparent" AllowsTransparency="True">
     <Grid>
-        <Border Background="#969799" Opacity="0.19"/>
+        <Border Background="#ADAEAF" Opacity="0.19"/>
         <Grid Height="500" Width="933" Margin="0,21,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="38"/>
@@ -26,12 +26,57 @@
                         </Run>
                     </TextBlock>
                 </Border>
-                <Button Grid.Column="0">
+                <Button Style="{StaticResource XButton}" Grid.Column="0" Click="XButton_Click">
                     
                 </Button>
             </Grid>
             <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="33"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                        <Grid Margin="0,40,0,0">
+                            <TextBlock Foreground="#CED6E3" TextWrapping="Wrap" Width="866" FontSize="18" FontFamily="Roboto">
+                                <Run FontWeight="Light">
+                                    ReSchedule - це перероблена версія програми Schedule з покращеним дизайном, новим фреймворком та богатим функціоналом. Створена заради того, щоб мати інформацію про всі заняття у швидкому доступі на ПК. 
+                                </Run>
+                            </TextBlock>
+                        </Grid>
+                        
+                        <StackPanel Orientation="Vertical" Margin="0,45,0,0">
+                            <TextBlock Foreground="#CED6E3" TextWrapping="Wrap" Width="866" FontSize="18" FontFamily="Roboto">
+                                <Run FontWeight="Regular">
+                                    Авторство 
+                                </Run>
+                            </TextBlock>
+                            <TextBlock Foreground="#CED6E3" TextWrapping="Wrap" Width="866" FontSize="18" FontFamily="Roboto">
+                                <Run FontWeight="Light">
+                                    Розробник і дизайнер: Молчанов Станіслав Сергійович (ПЗ-21-1/9)
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Vertical" Margin="0,68,0,0">
+                            <TextBlock Foreground="#CED6E3" TextWrapping="Wrap" Width="866" FontSize="18" FontFamily="Roboto">
+                                <Run FontWeight="Regular">
+                                    Зв'язатись зі мною 
+                                </Run>
+                            </TextBlock>
+                            <TextBlock Foreground="#CED6E3" TextWrapping="Wrap" Width="866" FontSize="18" FontFamily="Roboto">
+                                <Run FontWeight="Light">
+                                    Електрона пошта: stasmolchanov7@gmail.com
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Foreground="#CED6E3" FontSize="11" FontFamily="Roboto" Grid.Row="1" Width="100" TextAlignment="Right" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,18,0">
+                        <Run FontWeight="Regular">
+                            Версія альфа 0.1
+                        </Run>
+                    </TextBlock>
+                </Grid>
             </Border>
         </Grid>
     </Grid>

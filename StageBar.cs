@@ -431,7 +431,7 @@ namespace ReSchedule
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#041723")),
-                Margin = new Thickness(0, 30, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
                 
                 Name = "MidPan"
             };
