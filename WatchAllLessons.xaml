@@ -31,21 +31,45 @@
                 </Button>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,4">
-                    <Button x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0">
+                    <RadioButton x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Понеділок
                             </Run>
                         </TextBlock>
-                    </Button>
+                    </RadioButton>
 
-                    <Button x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                    <RadioButton x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Вівторок
                             </Run>
                         </TextBlock>
-                    </Button>
+                    </RadioButton>
+
+                    <RadioButton x:Name="Wednesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                Середа
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
+
+                    <RadioButton x:Name="Thursday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                Четвер
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
+
+                    <RadioButton x:Name="Friday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                П'ятниця
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
                 </StackPanel>
             </Grid>
             <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">

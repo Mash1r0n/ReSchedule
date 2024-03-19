@@ -19,9 +19,56 @@ namespace ReSchedule
     /// </summary>
     public partial class WatchAllLessons : Window
     {
-        public WatchAllLessons()
+        public WatchAllLessons(int NumberOfDay)
         {
             InitializeComponent();
+
+            switch (NumberOfDay)
+            {
+                case 1:
+                    {
+                        Monday.IsChecked = true;
+                    }break;
+
+                    case 2:
+                    {
+                        Thuesday.IsChecked = true;
+                    }
+                    break;
+
+                    case 3:
+                    {
+                        Wednesday.IsChecked = true;
+                    }
+                    break;
+
+                    case 4:
+                    {
+                        Thursday.IsChecked = true;
+                    }
+                    break;
+
+                    case 5:
+                    {
+                        Friday.IsChecked = true;
+                    }
+                    break;
+
+                    case 6:{
+                        Monday.IsChecked = true;
+                    }
+                    break;
+
+                    case 7: {
+                        Monday.IsChecked = true;
+                    } break;
+
+                    default:
+                    {
+                        throw new Exception("Такого дня не існує");
+                    }
+
+            }
         }
 
         private void XButton_Click(object sender, RoutedEventArgs e)

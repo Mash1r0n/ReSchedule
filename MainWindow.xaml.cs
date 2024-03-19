@@ -29,11 +29,6 @@ namespace ReSchedule
         {
             this.lesson = lesson;
         }
-
-        public void AAA()
-        {
-
-        }
     }
 
     struct LessonPair
@@ -174,21 +169,27 @@ namespace ReSchedule
     static class ManageLessons
     {
         static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
-        static string CurrentDay;
+
         static MainWindow AllElementsInWindow;
 
         static DispatcherTimer ManageLoop;
 
-        static public void StartManage(string NameOfCurrentDay, int NumberOfCurrentDay, AllInfo AllCurrentInfo, MainWindow AEIW)
+        static public int CurrentNumberOfDay { get; private set; }
+
+        static public  string CurrentNameOfDay { get; private set; }
+
+        static public void StartManage(AllInfo AllCurrentInfo, MainWindow AEIW)
         {
-            List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(NumberOfCurrentDay);
+            CurrentNumberOfDay = GetWeekNumber();
+
+            CurrentNameOfDay = GetDaysNameByNumber(CurrentNumberOfDay);
+
+            List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
 
             for (int i = 0; i < 6; i++)
             {
                 InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
             }
-
-            CurrentDay = NameOfCurrentDay;
 
             AllElementsInWindow = AEIW;
 
@@ -196,6 +197,22 @@ namespace ReSchedule
 
             SetSettings();
         }
+
+        static string GetDaysNameByNumber(int DaysNumber)
+        {
+            switch (DaysNumber)
+            {
+                case 1: return "Понеділок";
+                case 2: return "Вівторок";
+                case 3: return "Середа";
+                case 4: return "Четвер";
+                case 5: return "П'ятниця";
+                case 6: return "Субота";
+                case 7: return "Неділя";
+                default: throw new Exception("Такого дня не існує");
+            }
+        }
+        
         static void TimeBeforeEndOfLessonCreate() //Когда секунді переваливают за 30 - оно раньше времени вісчитівает некст минуту
         {
             TimeSpan currentTime = DateTime.Now.TimeOfDay;
@@ -223,7 +240,7 @@ namespace ReSchedule
         }
         static public void SetSettings()
         {
-            AllElementsInWindow.TodaysDay.Text = CurrentDay;
+            AllElementsInWindow.TodaysDay.Text = CurrentNameOfDay;
             AllElementsInWindow.WeekModeNow.Text = ReturnNameOfWeekMode(GetWeekMode());
             ManageLoop.Interval = TimeSpan.FromSeconds(1);
 
@@ -290,33 +307,23 @@ namespace ReSchedule
         {
             return (Mode ? "Знаменник" : "Чисельник");
         }
+
+        public static int GetWeekNumber()
+        {
+            return ((int)DateTime.Now.DayOfWeek + 6) % 7 + 1;
+        }
     }
 
     public partial class MainWindow : Window
     {
-        private bool isDragging = false;
-        private Point anchorPoint;
+        //private bool isDragging = false;
+        //private Point anchorPoint;
 
         AllInfo InformationForAllProgram = new AllInfo();
 
-        static int CurrentNumberOfDay = ((int)DateTime.Now.DayOfWeek + 6) % 7 + 1;
+        
 
-        static string GetDaysNameByNumber(int DaysNumber)
-        {
-            switch (DaysNumber)
-            {
-                case 1: return "Понеділок";
-                case 2: return "Вівторок";
-                case 3: return "Середа";
-                case 4: return "Четвер";
-                case 5: return "П'ятниця";
-                case 6: return "Субота";
-                case 7: return "Неділя";
-                default: throw new Exception("Такого дня не існує");
-            }
-        }
-
-        string currentDay = GetDaysNameByNumber(CurrentNumberOfDay);
+        
 
         public MainWindow()
         {
@@ -324,7 +331,7 @@ namespace ReSchedule
 
             const int MinutesForRegistration = 7;
             const string TextAfterMinutesStages = "хвилин";
-            const string TextForStages = "етапів";
+            const string TextForStages = "етапи";
 
             //bool ShowRegistration = true;
 
@@ -340,7 +347,7 @@ namespace ReSchedule
 
             else
             {
-                ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram, this);
+                ManageLessons.StartManage(InformationForAllProgram, this);
             }
 
             Registration.ScrollToHorizontalOffset(1028);
@@ -962,7 +969,15 @@ namespace ReSchedule
 
             ReadInfoFromFile(out InformationForAllProgram);
 
-            ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram, this);
+            ManageLessons.StartManage(InformationForAllProgram, this);
+        }
+
+        private void AllLEssonsButton_Click(object sender, RoutedEventArgs e)
+        {
+            WatchAllLessons watchAllLessons = new WatchAllLessons(ManageLessons.CurrentNumberOfDay);
+            watchAllLessons.Owner = this;
+            watchAllLessons.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            watchAllLessons.ShowDialog();
         }
     }
 }

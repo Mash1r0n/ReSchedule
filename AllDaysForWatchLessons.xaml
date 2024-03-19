@@ -1,14 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="Button" x:Key="DayOfWeek">
+    <Style TargetType="RadioButton" x:Key="DayOfWeek">
         <Setter Property="Width" Value="120"/>
         <Setter Property="Height" Value="33"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="BkgOfButton" Background="#233350" CornerRadius="15">
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="BkgOfRadioButton" Background="#0D1D33" CornerRadius="15">
                         <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BkgOfRadioButton" Property="Background" Value="#233350"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="BkgOfRadioButton" Property="Background" Value="#3E557D"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
