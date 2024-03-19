@@ -31,7 +31,7 @@
                 </Button>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,4">
-                    <RadioButton x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0">
+                    <RadioButton x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0" Click="RadioButtonSelect_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Понеділок
@@ -39,7 +39,7 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                    <RadioButton x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="RadioButtonSelect_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Вівторок
@@ -47,7 +47,7 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Wednesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                    <RadioButton x:Name="Wednesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="RadioButtonSelect_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Середа
@@ -55,7 +55,7 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Thursday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                    <RadioButton x:Name="Thursday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="RadioButtonSelect_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Четвер
@@ -63,7 +63,7 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Friday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0">
+                    <RadioButton x:Name="Friday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="RadioButtonSelect_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 П'ятниця
@@ -73,7 +73,315 @@
                 </StackPanel>
             </Grid>
             <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="14"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="29"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="29"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="14"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="13"/>
+                        <RowDefinition />
+                        <RowDefinition Height="19"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="13"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="1" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Перше заняття
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="Lesson1" Background="#233350" CornerRadius="17" Grid.Row="1" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Перше заняття
+                                </Run>
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin1" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd1" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp1" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown1" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMфівфівфівфівфівфівфівфівфівфівфівіфвфів
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="1" Grid.Column="3">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Друге заняття
+                                </Run>
+                            </TextBlock>
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="Lesson2" Background="#233350"  CornerRadius="17" Grid.Row="1" Grid.Column="3">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Друге заняття
+                                </Run>
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin2" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd2" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp2" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown2" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE1
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="1" Grid.Column="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Третє заняття
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border x:Name="Lesson3" Background="#233350" CornerRadius="17" Grid.Row="1" Grid.Column="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Третє заняття
+                                </Run>
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin3" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd3" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>      
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp3" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown3" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE1
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Четверте заняття
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="Lesson4" Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Четверте заняття
+                                </Run>
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin4" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd4" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp4" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown4" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE1
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="3">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    П'яте заняття
+                                </Run>
+                            </TextBlock>
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="Lesson5" Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="3">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    П'яте заняття
+                                </Run>          
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin5" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd5" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp5" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown5" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE1
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3" FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Шосте заняття
+                                </Run>
+                            </TextBlock>
+                            <Rectangle Visibility="Visible" Grid.Row="3" Grid.Column="5" Margin="0,75,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="Lesson6" Background="#233350" CornerRadius="17" Grid.Row="3" Grid.Column="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Margin="18,10,0,0" Foreground="#CED6E3"  FontFamily="Nunito" FontSize="18">
+                                <Run FontWeight="Regular">
+                                    Шосте заняття
+                                </Run>
+                            </TextBlock>
+                            <StackPanel Margin="18,5,0,0" Orientation="Horizontal">
+                                <TextBlock x:Name="LessonBegin6" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Початок 10:10
+                                    </Run>
+                                </TextBlock>
+
+                                <TextBlock x:Name="LessonEnd6" Margin="50,0,0,0" Foreground="#CED6E3" FontSize="16" FontFamily="Nunito">
+                                    <Run FontWeight="Light">
+                                        Кінець: 10:10
+                                    </Run>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LessonUp6" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE
+                                </Run>
+                            </TextBlock>
+
+                            <Rectangle Height="1.9" Width="245" Fill="#FFFFFF" Margin="0,25,0,0"/>
+
+                            <TextBlock x:Name="LessonDown6" TextAlignment="Center" Width="257" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
+                                <Run FontWeight="Light">
+                                    NAMEEE1
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
     </Grid>

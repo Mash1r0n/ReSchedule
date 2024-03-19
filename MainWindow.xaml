@@ -88,6 +88,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="14"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>

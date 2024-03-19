@@ -21,7 +21,7 @@ namespace ReSchedule
     /// Interaction logic for MainWindow.xaml
     /// </summary>
 
-    struct Lesson
+    public struct Lesson
     {
         [JsonProperty]
         public string? lesson { get; private set; }
@@ -31,7 +31,7 @@ namespace ReSchedule
         }
     }
 
-    struct LessonPair
+    public struct LessonPair
     {
         [JsonProperty]
         public TimeSpan LessonBegin { get; private set; }
@@ -50,7 +50,7 @@ namespace ReSchedule
             LessonEnd = LE;
         }
     }
-    class AllLessons()
+    public class AllLessons()
     {
         [JsonProperty]
         public List<LessonPair> Monday { get; private set; } = new List<LessonPair>();
@@ -110,7 +110,7 @@ namespace ReSchedule
         }
     }
 
-    struct SettingsProperty
+    public struct SettingsProperty
     {
         //Messages
         public bool? MessageAboutLessonStart;
@@ -142,7 +142,7 @@ namespace ReSchedule
         }
     }
 
-    class AllInfo : AllLessons
+    public class AllInfo : AllLessons
     {
         [JsonProperty]
         public SettingsProperty Properties { get; private set; } = new SettingsProperty();
@@ -320,10 +320,6 @@ namespace ReSchedule
         //private Point anchorPoint;
 
         AllInfo InformationForAllProgram = new AllInfo();
-
-        
-
-        
 
         public MainWindow()
         {
@@ -974,7 +970,7 @@ namespace ReSchedule
 
         private void AllLEssonsButton_Click(object sender, RoutedEventArgs e)
         {
-            WatchAllLessons watchAllLessons = new WatchAllLessons(ManageLessons.CurrentNumberOfDay);
+            WatchAllLessons watchAllLessons = new WatchAllLessons(ManageLessons.CurrentNumberOfDay, InformationForAllProgram, this);
             watchAllLessons.Owner = this;
             watchAllLessons.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             watchAllLessons.ShowDialog();
