@@ -31,7 +31,7 @@
                 </Button>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,4">
-                    <RadioButton x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0" IsChecked="True">
+                    <RadioButton x:Name="FunctionalPage" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0" IsChecked="True" Click="ChangePageOfSettings_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Функціонал
@@ -39,7 +39,7 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" >
+                    <RadioButton x:Name="ChangeLessonsPage" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="ChangePageOfSettings_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
                                 Зміна розкладу
@@ -47,10 +47,10 @@
                         </TextBlock>
                     </RadioButton>
 
-                    <RadioButton x:Name="Wednesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" >
+                    <RadioButton x:Name="ImportAndExportPage" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" Click="ChangePageOfSettings_Click">
                         <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
                             <Run FontWeight="Light">
-                                Експорт/імпорт
+                                Експорт/Імпорт
                             </Run>
                         </TextBlock>
                     </RadioButton>
@@ -152,7 +152,7 @@
                         </Border>
                     </Grid>
 
-                    <Grid x:Name="ChangeLessons" Visibility="Visible">
+                    <Grid x:Name="ChangeLessons" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="14"/>
                             <ColumnDefinition/>
@@ -209,6 +209,10 @@
                                 </Run>
                             </TextBlock>
                         </Button>
+                    </Grid>
+
+                    <Grid x:Name="ImportAndExport">
+                        
                     </Grid>
                 </Grid>
             </Border>

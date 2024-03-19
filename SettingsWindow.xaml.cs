@@ -24,6 +24,10 @@ namespace ReSchedule
         {
             InitializeComponent();
 
+            FunctionalOfProgram.Visibility = Visibility.Visible;
+            ChangeLessons.Visibility = Visibility.Hidden;
+            ImportAndExport.Visibility = Visibility.Hidden;
+
             CurrentSettings = Settings;
 
             ParseSettings();
@@ -104,6 +108,39 @@ namespace ReSchedule
             changeChoosedLesson.Owner = this;
             changeChoosedLesson.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             changeChoosedLesson.ShowDialog();
+        }
+
+        private void ChangePageOfSettings_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton tempRadioButton = sender as RadioButton;
+
+            switch (tempRadioButton.Name)
+            {
+                case "FunctionalPage": 
+                {
+                    FunctionalOfProgram.Visibility = Visibility.Visible;
+                    ChangeLessons.Visibility = Visibility.Hidden;
+                    ImportAndExport.Visibility = Visibility.Hidden;
+                }
+                break;
+
+                case "ChangeLessonsPage": 
+                {
+                    FunctionalOfProgram.Visibility = Visibility.Hidden;
+                    ChangeLessons.Visibility = Visibility.Visible;
+                    ImportAndExport.Visibility = Visibility.Hidden;
+                }
+                break;
+
+                case "ImportAndExportPage":
+                {
+                    FunctionalOfProgram.Visibility = Visibility.Hidden;
+                    ChangeLessons.Visibility = Visibility.Hidden;
+                    ImportAndExport.Visibility = Visibility.Visible;
+                } break;
+
+                default: { throw new Exception("Інших дій не передбачено"); }
+            }
         }
     }
 }

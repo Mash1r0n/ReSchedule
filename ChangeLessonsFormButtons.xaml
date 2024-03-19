@@ -14,7 +14,7 @@
                             <Setter TargetName="ActionButtonBkg" Property="Background" Value="#3E557D"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="ActionButtonBkg" Property="Background" Value="#6C798F"/>
+                            <Setter TargetName="ActionButtonBkg" Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
