@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SideMenuOnHomePage.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\XButtonOnMenu.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\AllDaysForWatchLessons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ChangeLessonButtons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -57,97 +57,159 @@
 
                 </StackPanel>
             </Grid>
+            
             <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">
-                <Grid x:Name="FunctionalOfProgram" Visibility="Hidden">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="11"/>
-                        <RowDefinition />
-                        <RowDefinition Height="11"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Border Grid.Column="1" Grid.Row="1" Background="#233350" CornerRadius="17">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
-                                <Run FontWeight="Bold">
-                                    Повідомлення
+                <Grid>
+                    <Grid x:Name="FunctionalOfProgram" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="11"/>
+                            <RowDefinition />
+                            <RowDefinition Height="11"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Column="1" Grid.Row="1" Background="#233350" CornerRadius="17">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                <Run FontWeight="Bold">
+                    Повідомлення
+                </Run>
+                                </TextBlock>
+
+                                <Grid Margin="0,37,0,0">
+                                    <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                    <Run FontWeight="Light">
+                        Початок заняття
+                    </Run>
+                                    </TextBlock>
+                                    <ToggleButton x:Name="StartLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                </Grid>
+
+                                <Grid Margin="0,15,0,0">
+                                    <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                    <Run FontWeight="Light">
+                        Кінець заняття
+                    </Run>
+                                    </TextBlock>
+                                    <ToggleButton x:Name="EndLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="3" Grid.Row="1" Background="#233350" CornerRadius="17">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                <Run FontWeight="Bold">
+                    Контекстне меню
+                </Run>
+                                </TextBlock>
+
+                                <Grid Margin="0,37,0,0">
+                                    <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                    <Run FontWeight="Light">
+                        Час кінця поточного заняття
+                    </Run>
+                                    </TextBlock>
+                                    <ToggleButton x:Name="TimeBeforeCurrentLessonEnd" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                </Grid>
+
+                                <Grid Margin="0,15,0,0">
+                                    <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                    <Run FontWeight="Light">
+                        Час початку наступного заняття
+                    </Run>
+                                    </TextBlock>
+                                    <ToggleButton x:Name="TimeBeforeBeginNextLesson" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="5" Grid.Row="1" Background="#233350" CornerRadius="17">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                <Run FontWeight="Bold">
+                    Інше
+                </Run>
+                                </TextBlock>
+
+                                <Grid Margin="0,37,0,0">
+                                    <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                    <Run FontWeight="Light">
+                        Запускати з системою
+                    </Run>
+                                    </TextBlock>
+                                    <ToggleButton x:Name="RunWithSystem" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Grid x:Name="ChangeLessons" Visibility="Visible">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="29"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="29"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="14"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="13"/>
+                            <RowDefinition />
+                            <RowDefinition Height="19"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="13"/>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="ChangeMonday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="1" Click="OpenLessonChangeWindow_Click">
+                            <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Regular">
+                                    Понеділок
                                 </Run>
                             </TextBlock>
+                        </Button>
 
-                            <Grid Margin="0,37,0,0">
-                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                                    <Run FontWeight="Light">
-                                        Початок заняття
-                                    </Run>
-                                </TextBlock>
-                                <ToggleButton x:Name="StartLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
-                            </Grid>
-
-                            <Grid Margin="0,15,0,0">
-                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                                    <Run FontWeight="Light">
-                                        Кінець заняття
-                                    </Run>
-                                </TextBlock>
-                                <ToggleButton x:Name="EndLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
-                    <Border Grid.Column="3" Grid.Row="1" Background="#233350" CornerRadius="17">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
-                                <Run FontWeight="Bold">
-                                    Контекстне меню
+                        <Button x:Name="ChangeThuesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="3" >
+                            <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Regular">
+                                    Вівторок
                                 </Run>
                             </TextBlock>
+                        </Button>
 
-                            <Grid Margin="0,37,0,0">
-                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                                    <Run FontWeight="Light">
-                                        Час кінця поточного заняття
-                                    </Run>
-                                </TextBlock>
-                                <ToggleButton x:Name="TimeBeforeCurrentLessonEnd" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
-                            </Grid>
-
-                            <Grid Margin="0,15,0,0">
-                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                                    <Run FontWeight="Light">
-                                        Час початку наступного заняття
-                                    </Run>
-                                </TextBlock>
-                                <ToggleButton x:Name="TimeBeforeBeginNextLesson" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-
-                    <Border Grid.Column="5" Grid.Row="1" Background="#233350" CornerRadius="17">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
-                                <Run FontWeight="Bold">
-                                    Інше
+                        <Button x:Name="ChangeWednesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="5" >
+                            <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Regular">
+                                    Середа
                                 </Run>
                             </TextBlock>
+                        </Button>
 
-                            <Grid Margin="0,37,0,0">
-                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                                    <Run FontWeight="Light">
-                                        Запускати з системою
-                                    </Run>
-                                </TextBlock>
-                                <ToggleButton x:Name="RunWithSystem" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
+                        <Button x:Name="ChangeThursday" Style="{StaticResource ChangeLessonButton}" Margin="155,0,-155,0" Grid.Row="3" Grid.Column="1" >
+                            <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Regular">
+                                    Четвер
+                                </Run>
+                            </TextBlock>
+                        </Button>
+
+                        <Button x:Name="ChangeFriday" Style="{StaticResource ChangeLessonButton}" Margin="-155,0,155,0" Grid.Row="3" Grid.Column="5" >
+                            <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Regular">
+                                    П'ятниця
+                                </Run>
+                            </TextBlock>
+                        </Button>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>

@@ -60,5 +60,10 @@ namespace ReSchedule
             SetSettings();
             this.Close();
         }
+
+        private void OpenLessonChangeWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
