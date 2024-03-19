@@ -64,7 +64,7 @@
                 <Grid Grid.Column="2">
                     <TextBlock x:Name="CurrentTime" Foreground="#CED6E3" FontFamily="Roboto" FontSize="31" VerticalAlignment="Center" TextAlignment="Center">
                         <Run FontWeight="Regular">
-                            99 : 99
+                            
                         </Run>
                     </TextBlock>
                 </Grid>
@@ -153,8 +153,8 @@
                                 </Run>
                             </TextBlock>
 
-                            <Rectangle x:Name="WithoutLesson2" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo2" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
+                            <Rectangle x:Name="WithoutLesson2" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo2" Grid.Row="1" Grid.Column="1" Background="Transparent" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName2" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -201,8 +201,8 @@
                                 </Run>
                             </TextBlock>
                             
-                            <Rectangle x:Name="WithoutLesson3" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo3" Grid.Row="1" Background="#233350" Grid.Column="1" Visibility="Visible">
+                            <Rectangle x:Name="WithoutLesson3" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo3" Grid.Row="1" Background="Transparent" Grid.Column="1" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName3" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -249,8 +249,8 @@
                                 </Run>
                             </TextBlock>
 
-                            <Rectangle x:Name="WithoutLesson4" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo4" Grid.Row="1"  Grid.Column="1" Background="#233350" Visibility="Visible">
+                            <Rectangle x:Name="WithoutLesson4" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo4" Grid.Row="1"  Grid.Column="1" Background="Transparent" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName4" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -297,8 +297,8 @@
                                 </Run>
                             </TextBlock>
 
-                            <Rectangle x:Name="WithoutLesson5" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo5" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
+                            <Rectangle x:Name="WithoutLesson5" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo5" Grid.Row="1" Grid.Column="1" Background="Transparent" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName5" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">
@@ -345,8 +345,8 @@
                                 </Run>
                             </TextBlock>
 
-                            <Rectangle x:Name="WithoutLesson6" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo6" Grid.Row="1" Grid.Column="1" Background="#233350" Visibility="Visible">
+                            <Rectangle x:Name="WithoutLesson6" Visibility="Hidden" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
+                            <Grid x:Name="LessonsInfo6" Grid.Row="1" Grid.Column="1" Background="Transparent" Visibility="Visible">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName6" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">

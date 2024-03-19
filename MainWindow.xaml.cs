@@ -29,6 +29,11 @@ namespace ReSchedule
         {
             this.lesson = lesson;
         }
+
+        public void AAA()
+        {
+
+        }
     }
 
     struct LessonPair
@@ -155,11 +160,11 @@ namespace ReSchedule
 
     struct LessonInfo
     {
-        public Lesson? NameOfLesson { get; private set; }
+        public Lesson NameOfLesson { get; private set; }
         public TimeSpan LessonBegin { get; private set; }
         public TimeSpan LessonEnd { get; private set; }
 
-        public LessonInfo(Lesson? name, TimeSpan begin, TimeSpan end) {
+        public LessonInfo(Lesson name, TimeSpan begin, TimeSpan end) {
             NameOfLesson = name;
             LessonBegin = begin;
             LessonEnd = end;
@@ -169,31 +174,121 @@ namespace ReSchedule
     static class ManageLessons
     {
         static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
+        static string CurrentDay;
+        static MainWindow AllElementsInWindow;
 
-        static public void StartManage(string NameOfCurrentDay, int NumberOfCurrentDay, AllInfo AllCurrentInfo)
+        static DispatcherTimer ManageLoop;
+
+        static public void StartManage(string NameOfCurrentDay, int NumberOfCurrentDay, AllInfo AllCurrentInfo, MainWindow AEIW)
         {
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(NumberOfCurrentDay);
 
             for (int i = 0; i < 6; i++)
             {
-                InformationAboutLessons.Add(new LessonInfo(CheckForNull((GetWeekMode() ? lesson[i].Lessons2.lesson : lesson[i].Lessons1.lesson)), lesson[i].LessonBegin, lesson[i].LessonEnd));
+                InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
+            }
+
+            CurrentDay = NameOfCurrentDay;
+
+            AllElementsInWindow = AEIW;
+
+            ManageLoop = new DispatcherTimer();
+
+            SetSettings();
+        }
+        static void TimeBeforeEndOfLessonCreate() //Когда секунді переваливают за 30 - оно раньше времени вісчитівает некст минуту
+        {
+            TimeSpan currentTime = DateTime.Now.TimeOfDay;
+            
+            for (int i = 0; i < InformationAboutLessons.Count; i++)
+            {
+                if (currentTime < InformationAboutLessons[i].LessonBegin)
+                {
+                    TextBlock tempTextBlock = AllElementsInWindow.FindName($"LessonStatus{i + 1 }") as TextBlock;
+                    tempTextBlock.Text = " До закінчення (хв): Не почалось";
+                }
+                else if(currentTime > InformationAboutLessons[i].LessonEnd)
+                {
+                    TextBlock tempTextBlock = AllElementsInWindow.FindName($"LessonStatus{i + 1}") as TextBlock;
+                    tempTextBlock.Text = "До закінчення (хв): Завершено";
+                }
+                else if (currentTime > InformationAboutLessons[i].LessonBegin && currentTime < InformationAboutLessons[i].LessonEnd)
+                {
+                    TimeSpan TimeDiff = InformationAboutLessons[i].LessonEnd - currentTime;
+
+                    TextBlock tempTextBlock = AllElementsInWindow.FindName($"LessonStatus{i + 1}") as TextBlock;
+                    tempTextBlock.Text = "До закінчення (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+                }
+            }
+        }
+        static public void SetSettings()
+        {
+            AllElementsInWindow.TodaysDay.Text = CurrentDay;
+            AllElementsInWindow.WeekModeNow.Text = ReturnNameOfWeekMode(GetWeekMode());
+            ManageLoop.Interval = TimeSpan.FromSeconds(1);
+
+            ManageLoop.Tick += (s, e) =>
+            {
+                string CurrentTextTime = "";
+                var TempDate = DateTime.Now;
+                CurrentTextTime = TempDate.ToString("HH : mm");
+
+                TimeBeforeEndOfLessonCreate();
+
+                AllElementsInWindow.CurrentTime.Text = CurrentTextTime;
+            };
+
+            ManageLoop.Start();
+
+            for (int i = 0; i < InformationAboutLessons.Count; i++)
+            {
+                if (InformationAboutLessons[i].NameOfLesson.lesson == "-")
+                {
+                    Rectangle tempRectg = AllElementsInWindow.FindName($"WithoutLesson{i + 1}") as Rectangle;
+                    tempRectg.Visibility = Visibility.Visible;
+
+                    Grid tempGrid = AllElementsInWindow.FindName($"LessonsInfo{i + 1}") as Grid;
+                    tempGrid.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    Rectangle tempRectg = AllElementsInWindow.FindName($"WithoutLesson{i + 1}") as Rectangle;
+                    tempRectg.Visibility = Visibility.Hidden;
+
+                    Grid tempGrid = AllElementsInWindow.FindName($"LessonsInfo{i + 1}") as Grid;
+                    tempGrid.Visibility = Visibility.Visible;
+
+                    var tempTextBlock = AllElementsInWindow.FindName($"LessonName{i + 1}") as TextBlock;
+                    tempTextBlock.Text = InformationAboutLessons[i].NameOfLesson.lesson;
+
+                    tempTextBlock = AllElementsInWindow.FindName($"LessonBegin{i + 1}") as TextBlock;
+                    tempTextBlock.Text = "Початок: " + InformationAboutLessons[i].LessonBegin.ToString(@"hh\:mm");
+
+                    tempTextBlock = AllElementsInWindow.FindName($"LessonEnd{i + 1}") as TextBlock;
+                    tempTextBlock.Text = "Кінець: " + InformationAboutLessons[i].LessonEnd.ToString(@"hh\:mm");
+                }
             }
         }
 
-        static Lesson? CheckForNull(string? str)
-        {
-            if (str == "-" || str == null)
-            {
-                return null;
-            }
-            return new Lesson(str);
-        }
+        //static Lesson? CheckForNull(string? str)
+        //{
+        //    if (str == "-" || str == null)
+        //    {
+        //        return null;
+        //    }
+        //    return new Lesson(str);
+        //}
         static bool GetWeekMode() //true - Знаменник, false - Чисельник
         {
             DateTime StartDate = new DateTime(2023, 1, 1);
             TimeSpan diff = DateTime.Now - StartDate;
             int diffWeeks = (int)diff.TotalDays / 7;
             return diffWeeks % 2 != 0;
+        }
+
+        static string ReturnNameOfWeekMode(bool Mode)
+        {
+            return (Mode ? "Знаменник" : "Чисельник");
         }
     }
 
@@ -245,7 +340,7 @@ namespace ReSchedule
 
             else
             {
-                ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram);
+                ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram, this);
             }
 
             Registration.ScrollToHorizontalOffset(1028);
@@ -867,7 +962,7 @@ namespace ReSchedule
 
             ReadInfoFromFile(out InformationForAllProgram);
 
-            ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram);
+            ManageLessons.StartManage(currentDay, CurrentNumberOfDay, InformationForAllProgram, this);
         }
     }
 }

@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseWeekMode.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SideMenuOnHomePage.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\XButtonOnMenu.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\AllDaysForWatchLessons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
