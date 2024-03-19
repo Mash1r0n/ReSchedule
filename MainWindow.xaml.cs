@@ -23,6 +23,7 @@ namespace ReSchedule
 
     struct Lesson
     {
+        [JsonProperty]
         public string? lesson { get; private set; }
         public Lesson(string? lesson)
         {
@@ -32,9 +33,13 @@ namespace ReSchedule
 
     struct LessonPair
     {
+        [JsonProperty]
         public TimeSpan LessonBegin { get; private set; }
+        [JsonProperty]
         public TimeSpan LessonEnd { get; private set; }
+        [JsonProperty]
         public Lesson Lessons1 { get; private set; }
+        [JsonProperty]
         public Lesson Lessons2 { get; private set; }
 
         public LessonPair(Lesson l1, Lesson l2, TimeSpan LB, TimeSpan LE)
@@ -47,10 +52,15 @@ namespace ReSchedule
     }
     class AllLessons()
     {
+        [JsonProperty]
         public List<LessonPair> Monday { get; private set; } = new List<LessonPair>();
+        [JsonProperty]
         public List<LessonPair> Thuesday { get; private set; } = new List<LessonPair>();
+        [JsonProperty]
         public List<LessonPair> Wednesday { get; private set; } = new List<LessonPair>();
+        [JsonProperty]
         public List<LessonPair> Thursday { get; private set; } = new List<LessonPair>();
+        [JsonProperty]
         public List<LessonPair> Friday { get; private set; } = new List<LessonPair>();
 
         public List<LessonPair> GetDaysLessons(int NumberOfDay)
@@ -134,6 +144,7 @@ namespace ReSchedule
 
     class AllInfo : AllLessons
     {
+        [JsonProperty]
         public SettingsProperty Properties { get; private set; } = new SettingsProperty();
 
         public void SetSettings(SettingsProperty SProperty)
@@ -193,9 +204,24 @@ namespace ReSchedule
 
         AllInfo InformationForAllProgram = new AllInfo();
 
-        string currentDay = DateTime.Today.DayOfWeek.ToString();
+        static int CurrentNumberOfDay = ((int)DateTime.Now.DayOfWeek + 6) % 7 + 1;
 
-        int CurrentNumberOfDay = ((int)DateTime.Now.DayOfWeek + 6) % 7 + 1;
+        static string GetDaysNameByNumber(int DaysNumber)
+        {
+            switch (DaysNumber)
+            {
+                case 1: return "Понеділок";
+                case 2: return "Вівторок";
+                case 3: return "Середа";
+                case 4: return "Четвер";
+                case 5: return "П'ятниця";
+                case 6: return "Субота";
+                case 7: return "Неділя";
+                default: throw new Exception("Такого дня не існує");
+            }
+        }
+
+        string currentDay = GetDaysNameByNumber(CurrentNumberOfDay);
 
         public MainWindow()
         {
