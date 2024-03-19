@@ -1,0 +1,155 @@
+﻿<Window x:Class="ReSchedule.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReSchedule"
+        mc:Ignorable="d"
+        Title="SettingsWindow"  WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="Transparent" AllowsTransparency="True">
+    <Grid>
+        <Border Background="#ADAEAF" Opacity="0.19"/>
+        <Grid Height="500" Width="933" Margin="0,21,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="36"/>
+                    <ColumnDefinition Width="193"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Margin="0,0,0,-1" Grid.Column="1"  Background="#0D1D33" CornerRadius="43,15,0,0">
+                    <TextBlock Foreground="#CED6E3" FontFamily="Roboto" FontSize="18" TextAlignment="Center" Padding="0,9,0,0">
+                        <Run FontWeight="Regular">
+                            Налаштування
+                        </Run>
+                    </TextBlock>
+                </Border>
+                <Button Style="{StaticResource XButton}" Grid.Column="0" Click="XButton_Click">
+
+                </Button>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,4">
+                    <RadioButton x:Name="Monday" Style="{StaticResource DayOfWeek}" Margin="21,0,0,0" IsChecked="True">
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                Функціонал
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
+
+                    <RadioButton x:Name="Thuesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" >
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                Зміна розкладу
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
+
+                    <RadioButton x:Name="Wednesday" Style="{StaticResource DayOfWeek}" Margin="8,0,0,0" >
+                        <TextBlock FontSize="16" FontFamily="Nunito" Foreground="#CED6E3" >
+                            <Run FontWeight="Light">
+                                Експорт/імпорт
+                            </Run>
+                        </TextBlock>
+                    </RadioButton>
+
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">
+                <Grid x:Name="FunctionalOfProgram" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="11"/>
+                        <RowDefinition />
+                        <RowDefinition Height="11"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border Grid.Column="1" Grid.Row="1" Background="#233350" CornerRadius="17">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                                <Run FontWeight="Bold">
+                                    Повідомлення
+                                </Run>
+                            </TextBlock>
+
+                            <Grid Margin="0,37,0,0">
+                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                                    <Run FontWeight="Light">
+                                        Початок заняття
+                                    </Run>
+                                </TextBlock>
+                                <ToggleButton x:Name="StartLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                            </Grid>
+
+                            <Grid Margin="0,15,0,0">
+                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                                    <Run FontWeight="Light">
+                                        Кінець заняття
+                                    </Run>
+                                </TextBlock>
+                                <ToggleButton x:Name="EndLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="3" Grid.Row="1" Background="#233350" CornerRadius="17">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                                <Run FontWeight="Bold">
+                                    Контекстне меню
+                                </Run>
+                            </TextBlock>
+
+                            <Grid Margin="0,37,0,0">
+                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                                    <Run FontWeight="Light">
+                                        Час кінця поточного заняття
+                                    </Run>
+                                </TextBlock>
+                                <ToggleButton x:Name="TimeBeforeCurrentLessonEnd" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                            </Grid>
+
+                            <Grid Margin="0,15,0,0">
+                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                                    <Run FontWeight="Light">
+                                        Час початку наступного заняття
+                                    </Run>
+                                </TextBlock>
+                                <ToggleButton x:Name="TimeBeforeBeginNextLesson" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="5" Grid.Row="1" Background="#233350" CornerRadius="17">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
+                                <Run FontWeight="Bold">
+                                    Інше
+                                </Run>
+                            </TextBlock>
+
+                            <Grid Margin="0,37,0,0">
+                                <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
+                                    <Run FontWeight="Light">
+                                        Запускати з системою
+                                    </Run>
+                                </TextBlock>
+                                <ToggleButton x:Name="RunWithSystem" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

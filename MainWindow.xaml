@@ -6,7 +6,7 @@
         xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         xmlns:local="clr-namespace:ReSchedule"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="#041723">
+        Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" WindowStartupLocation="CenterScreen" Background="#041723" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="21"></RowDefinition>
@@ -31,10 +31,10 @@
 
             <Border Background="#0D1D33" CornerRadius="30" Grid.Column="1" Grid.Row="2" Grid.RowSpan="1">
                 <StackPanel Orientation="Vertical">
-                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,135,0,0" Click="AllLEssonsButton_Click">
+                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,135,0,0" Click="AllLessonsButton_Click">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center"  Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\AllLessons.png"/>
                     </Button>
-                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,9,0,0">
+                    <Button Style="{StaticResource SideMenuButtons}"  Margin="0,9,0,0" Click="ShowSettingsClick">
                         <Image Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Center" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Settings.png"/>
                     </Button>
                     <Button Style="{StaticResource SideMenuButtons}" Margin="0,9,0,0" Click="AuthorButton_Click">
@@ -106,7 +106,7 @@
                             </TextBlock>
                             
                             <Rectangle x:Name="WithoutLesson1" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="6" Width="65" Fill="#CED6E3" RadiusX="5" RadiusY="5"/>
-                            <Grid x:Name="LessonsInfo1" Background="#233350" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                            <Grid x:Name="LessonsInfo1" Background="Transparent" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
                                 <StackPanel Margin="0,11,0,0" Orientation="Vertical">
                                     <TextBlock x:Name="LessonName1" Foreground="#96A0B3" FontSize="16" FontFamily="Nunito" TextTrimming="CharacterEllipsis" Width="256" HorizontalAlignment="Left">
                                         <Run FontWeight="Regular">

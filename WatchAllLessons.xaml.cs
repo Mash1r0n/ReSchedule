@@ -106,10 +106,10 @@ namespace ReSchedule
                     tempTextBlock.Text = "Кінець: " + LessonsData[i].LessonEnd.ToString(@"hh\:mm");
 
                     tempTextBlock = FindName($"LessonUp{i + 1}") as TextBlock;
-                    tempTextBlock.Text = LessonsData[i].Lessons1.lesson;
+                    tempTextBlock.Text = (LessonsData[i].Lessons1.lesson == "-" ? "Відсутня" : LessonsData[i].Lessons1.lesson);
 
                     tempTextBlock = FindName($"LessonDown{i + 1}") as TextBlock;
-                    tempTextBlock.Text = LessonsData[i].Lessons2.lesson;
+                    tempTextBlock.Text = (LessonsData[i].Lessons2.lesson == "-" ? "Відсутня" : LessonsData[i].Lessons2.lesson);
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace ReSchedule
 
         private void RadioButtonSelect_Click(object sender, RoutedEventArgs e)
         {
-            Button tempButton = sender as Button;
+            RadioButton tempButton = sender as RadioButton;
             switch (tempButton.Name)
             {
                 case "Monday":

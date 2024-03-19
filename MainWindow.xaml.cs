@@ -252,6 +252,8 @@ namespace ReSchedule
 
                 TimeBeforeEndOfLessonCreate();
 
+                //Добавить проверку на следующий день
+
                 AllElementsInWindow.CurrentTime.Text = CurrentTextTime;
             };
 
@@ -319,7 +321,7 @@ namespace ReSchedule
         //private bool isDragging = false;
         //private Point anchorPoint;
 
-        AllInfo InformationForAllProgram = new AllInfo();
+        AllInfo InformationForAllProgram;
 
         public MainWindow()
         {
@@ -328,6 +330,8 @@ namespace ReSchedule
             const int MinutesForRegistration = 7;
             const string TextAfterMinutesStages = "хвилин";
             const string TextForStages = "етапи";
+
+            InformationForAllProgram = new AllInfo();
 
             //bool ShowRegistration = true;
 
@@ -902,6 +906,8 @@ namespace ReSchedule
         {
             AllInfo TemplateOfData = new AllInfo();
 
+            FormPanel.NextStage();
+
             List<LessonPair> TemplateOfPairLessonForMonday = new List<LessonPair>();
             TemplateOfPairLessonForMonday.Add(new LessonPair(new Lesson(M1C.Text), new Lesson(M1Sn.Text), new TimeSpan(9,0,0), new TimeSpan(10,20,0)));
             TemplateOfPairLessonForMonday.Add(new LessonPair(new Lesson(M2C.Text), new Lesson(M2Sn.Text), new TimeSpan(10,30,0), new TimeSpan(11,50,0)));
@@ -966,14 +972,29 @@ namespace ReSchedule
             ReadInfoFromFile(out InformationForAllProgram);
 
             ManageLessons.StartManage(InformationForAllProgram, this);
+
+            Registration.Visibility = Visibility.Hidden;
         }
 
-        private void AllLEssonsButton_Click(object sender, RoutedEventArgs e)
+        private void AllLessonsButton_Click(object sender, RoutedEventArgs e)
         {
             WatchAllLessons watchAllLessons = new WatchAllLessons(ManageLessons.CurrentNumberOfDay, InformationForAllProgram, this);
             watchAllLessons.Owner = this;
             watchAllLessons.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             watchAllLessons.ShowDialog();
+        }
+
+        private void ShowSettingsClick(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow ShowAllSettings = new SettingsWindow(InformationForAllProgram);
+            ShowAllSettings.Owner = this;
+            ShowAllSettings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            ShowAllSettings.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            WriteInfoInFile(InformationForAllProgram);
         }
     }
 }
