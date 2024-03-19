@@ -178,7 +178,7 @@
                             </TextBlock>
                         </Button>
 
-                        <Button x:Name="ChangeThuesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="3" >
+                        <Button x:Name="ChangeThuesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="3" Click="OpenLessonChangeWindow_Click">
                             <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
                                 <Run FontWeight="Regular">
                                     Вівторок
@@ -186,7 +186,7 @@
                             </TextBlock>
                         </Button>
 
-                        <Button x:Name="ChangeWednesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="5" >
+                        <Button x:Name="ChangeWednesday" Style="{StaticResource ChangeLessonButton}" Grid.Row="1" Grid.Column="5" Click="OpenLessonChangeWindow_Click">
                             <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
                                 <Run FontWeight="Regular">
                                     Середа
@@ -194,7 +194,7 @@
                             </TextBlock>
                         </Button>
 
-                        <Button x:Name="ChangeThursday" Style="{StaticResource ChangeLessonButton}" Margin="155,0,-155,0" Grid.Row="3" Grid.Column="1" >
+                        <Button x:Name="ChangeThursday" Style="{StaticResource ChangeLessonButton}" Margin="155,0,-155,0" Grid.Row="3" Grid.Column="1" Click="OpenLessonChangeWindow_Click">
                             <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
                                 <Run FontWeight="Regular">
                                     Четвер
@@ -202,7 +202,7 @@
                             </TextBlock>
                         </Button>
 
-                        <Button x:Name="ChangeFriday" Style="{StaticResource ChangeLessonButton}" Margin="-155,0,155,0" Grid.Row="3" Grid.Column="5" >
+                        <Button x:Name="ChangeFriday" Style="{StaticResource ChangeLessonButton}" Margin="-155,0,155,0" Grid.Row="3" Grid.Column="5" Click="OpenLessonChangeWindow_Click">
                             <TextBlock FontSize="36" Foreground="#CED6E3" FontFamily="Nunito">
                                 <Run FontWeight="Regular">
                                     П'ятниця

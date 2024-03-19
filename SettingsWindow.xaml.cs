@@ -58,12 +58,52 @@ namespace ReSchedule
         private void XButton_Click(object sender, RoutedEventArgs e)
         {
             SetSettings();
+
             this.Close();
         }
 
         private void OpenLessonChangeWindow_Click(object sender, RoutedEventArgs e)
         {
+            Button ButtonObject = sender as Button;
+            ChangeChoosedLesson changeChoosedLesson = null;
+            switch (ButtonObject.Name)
+            {
+                case "ChangeMonday": 
+                {
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Monday);  
+                }
+                break;
 
+                case "ChangeThuesday": 
+                {
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thuesday);
+                }
+                break;
+
+                case "ChangeWednesday": 
+                {
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Wednesday);
+                }
+                break;
+
+                case "ChangeThursday": 
+                {
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thursday);
+                }
+                break;
+
+                case "ChangeFriday": 
+                {
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Friday);
+                }
+                break;
+
+                default: { throw new Exception("Непередбачувана дія"); }
+            }
+
+            changeChoosedLesson.Owner = this;
+            changeChoosedLesson.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            changeChoosedLesson.ShowDialog();
         }
     }
 }

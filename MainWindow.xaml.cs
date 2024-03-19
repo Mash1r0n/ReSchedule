@@ -198,7 +198,21 @@ namespace ReSchedule
             SetSettings();
         }
 
-        static string GetDaysNameByNumber(int DaysNumber)
+        static public void SetNewLessonInfo(AllLessons AllCurrentInfo)
+        {
+            List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
+
+            InformationAboutLessons = new List<LessonInfo>();
+
+            for (int i = 0; i < 6; i++)
+            {
+                InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
+            }
+
+            SetSettings();
+        }
+
+        public static string GetDaysNameByNumber(int DaysNumber)
         {
             switch (DaysNumber)
             {
@@ -222,7 +236,7 @@ namespace ReSchedule
                 if (currentTime < InformationAboutLessons[i].LessonBegin)
                 {
                     TextBlock tempTextBlock = AllElementsInWindow.FindName($"LessonStatus{i + 1 }") as TextBlock;
-                    tempTextBlock.Text = " До закінчення (хв): Не почалось";
+                    tempTextBlock.Text = "До закінчення (хв): Не почалось";
                 }
                 else if(currentTime > InformationAboutLessons[i].LessonEnd)
                 {
