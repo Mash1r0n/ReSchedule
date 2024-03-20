@@ -170,7 +170,7 @@ namespace ReSchedule
 
             Text_Block = new TextBlock
             {
-                FontFamily = new FontFamily("Roboto"),
+                FontFamily = new System.Windows.Media.FontFamily("Roboto"),
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350")),
                 FontWeight = FontWeights.Bold,
                 FontSize = 11,

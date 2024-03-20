@@ -60,7 +60,7 @@
             
             <Border Grid.Row="1" CornerRadius="30" Background="#0D1D33">
                 <Grid>
-                    <Grid x:Name="FunctionalOfProgram" Visibility="Hidden">
+                    <Grid x:Name="FunctionalOfProgram" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition/>
@@ -79,25 +79,25 @@
                         <Border Grid.Column="1" Grid.Row="1" Background="#233350" CornerRadius="17">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
-                <Run FontWeight="Bold">
-                    Повідомлення
-                </Run>
+                                    <Run FontWeight="Bold">
+                                        Повідомлення
+                                    </Run>
                                 </TextBlock>
 
                                 <Grid Margin="0,37,0,0">
                                     <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                    <Run FontWeight="Light">
-                        Початок заняття
-                    </Run>
+                                        <Run FontWeight="Light">
+                                            Початок заняття
+                                        </Run>
                                     </TextBlock>
                                     <ToggleButton x:Name="StartLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
                                 </Grid>
 
                                 <Grid Margin="0,15,0,0">
                                     <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                    <Run FontWeight="Light">
-                        Кінець заняття
-                    </Run>
+                                        <Run FontWeight="Light">
+                                            Кінець заняття
+                                        </Run>
                                     </TextBlock>
                                     <ToggleButton x:Name="EndLessonMessage" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
                                 </Grid>
@@ -107,25 +107,25 @@
                         <Border Grid.Column="3" Grid.Row="1" Background="#233350" CornerRadius="17">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Foreground="#CED6E3" Margin="0,9,0,0" TextAlignment="Center" FontSize="21" FontFamily="Roboto" >
-                <Run FontWeight="Bold">
-                    Контекстне меню
-                </Run>
+                                    <Run FontWeight="Bold">
+                                        Контекстне меню
+                                    </Run>
                                 </TextBlock>
 
                                 <Grid Margin="0,37,0,0">
                                     <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                    <Run FontWeight="Light">
-                        Час кінця поточного заняття
-                    </Run>
+                                        <Run FontWeight="Light">
+                                            Час кінця/початку заняття
+                                        </Run>
                                     </TextBlock>
                                     <ToggleButton x:Name="TimeBeforeCurrentLessonEnd" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
                                 </Grid>
 
                                 <Grid Margin="0,15,0,0">
                                     <TextBlock FontFamily="Roboto" FontSize="16" TextAlignment="Left" Foreground="#CED6E3"  Padding="0,3,0,0" Margin="7,0,0,0">
-                    <Run FontWeight="Light">
-                        Час початку наступного заняття
-                    </Run>
+                                        <Run FontWeight="Light">
+                                            Наступне заняття
+                                        </Run>
                                     </TextBlock>
                                     <ToggleButton x:Name="TimeBeforeBeginNextLesson" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
                                 </Grid>
@@ -211,7 +211,7 @@
                         </Button>
                     </Grid>
 
-                    <Grid x:Name="ImportAndExport" Visibility="Visible">
+                    <Grid x:Name="ImportAndExport" Visibility="Hidden">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="11"/>
                             <RowDefinition/>
@@ -227,7 +227,7 @@
                             <ColumnDefinition Width="10"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ExportAllInfo_Click">
+                        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource ImportExportButton}" Click="ExportAllInfo_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ExportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,0,0">
@@ -238,7 +238,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ExportLessons_Click">
+                        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ImportExportButton}" Click="ExportLessons_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ExportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,0,0">
@@ -249,7 +249,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource ImportExportButton}" Click="ImportAllInfo_Click">
+                        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ImportAllInfo_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ImportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,27,0">
@@ -261,7 +261,7 @@
                         </Button>
 
 
-                        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ImportExportButton}" Click="ImportLessonsButton_Click">
+                        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ImportLessonsButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ImportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,0,0">

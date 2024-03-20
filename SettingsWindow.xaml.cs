@@ -45,8 +45,8 @@ namespace ReSchedule
             StartLessonMessage.IsChecked = CurrentSettings.Properties.MessageAboutLessonStart;
             EndLessonMessage.IsChecked = CurrentSettings.Properties.MessageAboutLessonEnd;
 
-            TimeBeforeCurrentLessonEnd.IsChecked = CurrentSettings.Properties.TimeBeforeEndOfCurrentLesson;
-            TimeBeforeBeginNextLesson.IsChecked = CurrentSettings.Properties.TimeBeforeBeginNextLesson;
+            TimeBeforeCurrentLessonEnd.IsChecked = CurrentSettings.Properties.TimeBeginEndOfLesson;
+            TimeBeforeBeginNextLesson.IsChecked = CurrentSettings.Properties.NextLesson;
 
             RunWithSystem.IsChecked = CurrentSettings.Properties.StartWithSystem; 
         }
@@ -58,8 +58,8 @@ namespace ReSchedule
             tempSettings.MessageAboutLessonStart = StartLessonMessage.IsChecked;
             tempSettings.MessageAboutLessonEnd = EndLessonMessage.IsChecked;
 
-            tempSettings.TimeBeforeEndOfCurrentLesson = TimeBeforeCurrentLessonEnd.IsChecked;
-            tempSettings.TimeBeforeBeginNextLesson = TimeBeforeBeginNextLesson.IsChecked;
+            tempSettings.TimeBeginEndOfLesson = TimeBeforeCurrentLessonEnd.IsChecked;
+            tempSettings.NextLesson = TimeBeforeBeginNextLesson.IsChecked;
 
             tempSettings.StartWithSystem = RunWithSystem.IsChecked;
 
@@ -230,37 +230,6 @@ namespace ReSchedule
         {
             string AnyFilePath;
 
-            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-            saveFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
-            saveFileDialog.Title = "Зберегти заняття";
-            bool? saveResult = saveFileDialog.ShowDialog();
-            if (saveResult == true)
-            {
-                AnyFilePath = saveFileDialog.FileName;
-                WriteLessonsInFile(CurrentSettings, AnyFilePath);
-            }
-        }
-
-        private void ImportAllInfo_Click(object sender, RoutedEventArgs e)
-        {
-            string AnyFilePath;
-
-            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-            saveFileDialog.Filter = "Файли з даними програми (*.drs)|*.drs";
-            saveFileDialog.Title = "Зберегти усі дані";
-            bool? saveResult = saveFileDialog.ShowDialog();
-
-            if (saveResult == true)
-            {
-                AnyFilePath = saveFileDialog.FileName;
-                WriteInfoInFile(CurrentSettings, AnyFilePath);
-            }
-        }
-
-        private void ExportLessons_Click(object sender, RoutedEventArgs e)
-        {
-            string AnyFilePath;
-
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Title = "Відкрити файл занять";
             openFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
@@ -273,7 +242,7 @@ namespace ReSchedule
             }
         }
 
-        private void ExportAllInfo_Click(object sender, RoutedEventArgs e)
+        private void ImportAllInfo_Click(object sender, RoutedEventArgs e)
         {
             string AnyFilePath;
 
@@ -286,6 +255,37 @@ namespace ReSchedule
             {
                 AnyFilePath = openFileDialog.FileName;
                 ReadInfoFromFile(ref CurrentSettings, AnyFilePath);
+            }
+        }
+
+        private void ExportLessons_Click(object sender, RoutedEventArgs e)
+        {
+            string AnyFilePath;
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
+            saveFileDialog.Title = "Зберегти заняття";
+            bool? saveResult = saveFileDialog.ShowDialog();
+            if (saveResult == true)
+            {
+                AnyFilePath = saveFileDialog.FileName;
+                WriteLessonsInFile(CurrentSettings, AnyFilePath);
+            }
+        }
+
+        private void ExportAllInfo_Click(object sender, RoutedEventArgs e)
+        {
+            string AnyFilePath;
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Файли з даними програми (*.drs)|*.drs";
+            saveFileDialog.Title = "Зберегти усі дані";
+            bool? saveResult = saveFileDialog.ShowDialog();
+
+            if (saveResult == true)
+            {
+                AnyFilePath = saveFileDialog.FileName;
+                WriteInfoInFile(CurrentSettings, AnyFilePath);
             }
         }
     }

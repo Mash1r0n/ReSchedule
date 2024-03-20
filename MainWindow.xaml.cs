@@ -1,19 +1,13 @@
-﻿using System.IO;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using Newtonsoft.Json;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Newtonsoft;
-using Newtonsoft.Json;
 
 namespace ReSchedule
 {
@@ -117,8 +111,8 @@ namespace ReSchedule
         public bool? MessageAboutLessonEnd;
 
         //Context menu
-        public bool? TimeBeforeEndOfCurrentLesson;
-        public bool? TimeBeforeBeginNextLesson;
+        public bool? TimeBeginEndOfLesson;
+        public bool? NextLesson;
 
         //ETC
         public bool? StartWithSystem;
@@ -127,8 +121,8 @@ namespace ReSchedule
         {
             MessageAboutLessonStart = false;
             MessageAboutLessonEnd = false;
-            TimeBeforeEndOfCurrentLesson = false;
-            TimeBeforeBeginNextLesson = false;
+            TimeBeginEndOfLesson = false;
+            NextLesson = false;
             StartWithSystem = false;
         }
 
@@ -136,8 +130,8 @@ namespace ReSchedule
         {
             MessageAboutLessonStart = properties.MessageAboutLessonStart;
             MessageAboutLessonEnd = properties.MessageAboutLessonEnd;
-            TimeBeforeEndOfCurrentLesson = properties.TimeBeforeEndOfCurrentLesson;
-            TimeBeforeBeginNextLesson = properties.TimeBeforeBeginNextLesson;
+            TimeBeginEndOfLesson = properties.TimeBeginEndOfLesson;
+            NextLesson = properties.NextLesson;
             StartWithSystem = properties.StartWithSystem;
         }
     }
@@ -180,17 +174,103 @@ namespace ReSchedule
     {
         static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
 
+        static AllInfo CurrentSettings;
+
         static MainWindow AllElementsInWindow;
 
         static DispatcherTimer ManageLoop;
+
+        static Border CurrentLessonBorder;
+
+        static void SetNewLessonBorder(Border newBorder)
+        {
+            CurrentLessonBorder = newBorder;
+        }
+
+        static void StartLessonBorder()
+        {
+            // Создаем новый объект LinearGradientBrush
+            LinearGradientBrush gradientBrush = new LinearGradientBrush();
+
+            // Устанавливаем точки начала и конца градиента
+            gradientBrush.StartPoint = new Point(0, 0);
+            gradientBrush.EndPoint = new Point(1, 1);
+
+            // Добавляем стопы градиента
+            gradientBrush.GradientStops.Add(new GradientStop(Colors.Red, 0.0));
+            gradientBrush.GradientStops.Add(new GradientStop(Colors.Blue, 1.0));
+
+            CurrentLessonBorder.Background = gradientBrush;
+        }
+
+        static void EndLessonBorder()
+        {
+
+        }
+
+        static void RemakeContextMenuMouseOver()
+        {
+            TextBlock textBlock = new TextBlock
+            {
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CED6E3")),
+                FontSize = 16,
+                FontFamily = new FontFamily("Inter"),
+                TextAlignment = TextAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Height = 30,
+                Padding = new Thickness(0, 6, 0, 0)
+            };
+
+            Run run = new Run
+            {
+                FontWeight = FontWeights.Regular,
+                Text = "ReSchedule"
+            };
+
+            textBlock.Inlines.Add(run);
+
+            AllElementsInWindow.InformationToolTip.Children.Add(textBlock);
+
+            if (CurrentSettings.Properties.TimeBeginEndOfLesson == true)
+            {
+                Separator separator = new Separator
+                {
+                    Width = 147,
+                };
+
+                AllElementsInWindow.InformationToolTip.Children.Add(separator);
+
+                TextBlock txtBlock = new TextBlock
+                {
+                    Name="ContextTimeBeforeEndOfLesson",
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CED6E3")),
+                    FontSize = 14,
+                    FontFamily = new FontFamily("Inter"),
+                    TextAlignment = TextAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Height = 30,
+                    Padding = new Thickness(3, 7, 3, 7)
+                };
+
+                run = new Run
+                {
+                    FontWeight = FontWeights.Light,
+                    Text = "AAAAAAA",
+                };
+
+                txtBlock.Inlines.Add(run);
+
+                AllElementsInWindow.InformationToolTip.Children.Add(txtBlock);
+            }
+        }
 
         static public int CurrentNumberOfDay { get; private set; }
 
         static public  string CurrentNameOfDay { get; private set; }
 
-        public const int CountOfManagedDays = 5;
-
-        
+        public const int CountOfManagedDays = 5; 
 
         static public void StartManage(AllInfo AllCurrentInfo, MainWindow AEIW)
         {
@@ -199,6 +279,8 @@ namespace ReSchedule
             CurrentNameOfDay = GetDaysNameByNumber(CurrentNumberOfDay);
 
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
+
+            CurrentSettings = AllCurrentInfo;
 
             InformationAboutLessons = new List<LessonInfo>();
 
@@ -212,6 +294,8 @@ namespace ReSchedule
             ManageLoop = new DispatcherTimer();
 
             SetSettings();
+
+            RemakeContextMenuMouseOver();
         }
 
         static public void SetNewLessonInfo(AllLessons AllCurrentInfo)
@@ -268,6 +352,56 @@ namespace ReSchedule
                 }
             }
         }
+
+        static void ContextTimeBeforeEndOfLesson()
+        {
+            TimeSpan currentTime = DateTime.Now.TimeOfDay;
+
+            TimeSpan TimeDiff = new TimeSpan();
+
+            StackPanel tempContextStackPanel = AllElementsInWindow.FindName("InformationToolTip") as StackPanel;
+
+            TextBlock tempContextTempBlock = tempContextStackPanel.FindName("ContextTimeBeforeEndOfLesson") as TextBlock;
+
+            if (tempContextTempBlock != null)
+            {
+                tempContextTempBlock.Text = "До закінчення (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+            }
+
+            for (int i = 0; i < InformationAboutLessons.Count; i++)
+            {
+                if (currentTime < InformationAboutLessons[i].LessonEnd)
+                {
+                    if (currentTime > InformationAboutLessons[i].LessonBegin)
+                    {
+                        TimeDiff = InformationAboutLessons[i].LessonBegin - currentTime;
+
+                        if (tempContextTempBlock != null)
+                        {
+                            tempContextTempBlock.Text = "До закінчення (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        TimeDiff = InformationAboutLessons[i].LessonBegin - currentTime;
+
+                        if (tempContextTempBlock != null)
+                        {
+                            tempContextTempBlock.Text = "До початку (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+                        }
+                        break;
+                    }
+                }
+                else
+                {
+                    tempContextTempBlock.Text = "Пари закінчились!";
+                }
+            }
+
+
+            
+        }
         static public void SetSettings()
         {
             AllElementsInWindow.TodaysDay.Text = CurrentNameOfDay;
@@ -281,6 +415,8 @@ namespace ReSchedule
                 CurrentTextTime = TempDate.ToString("HH : mm");
 
                 TimeBeforeEndOfLessonCreate();
+
+                ContextTimeBeforeEndOfLesson();
 
                 //Добавить проверку на следующий день
 
@@ -353,16 +489,33 @@ namespace ReSchedule
 
         AllInfo InformationForAllProgram;
 
-       
+        void AAA()
+        {
+
+            // Устанавливаем начальный цвет фона
+            BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
+
+            // Создаем новый объект ColorAnimation
+            ColorAnimation colorAnimation = new ColorAnimation
+            {
+                From = ((SolidColorBrush)BorderLesson1.Background).Color, // начальный цвет
+                To = (Color)ColorConverter.ConvertFromString("#5523AF7F"), // конечный цвет
+                Duration = TimeSpan.FromSeconds(0.5) // продолжительность анимации
+            };
+
+            // Применяем анимацию к свойству Color фона
+            BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+        }
 
         public MainWindow()
         {
             InitializeComponent();
 
+            
+
             const int MinutesForRegistration = 7;
             const string TextAfterMinutesStages = "хвилин";
             const string TextForStages = "етапи";
-
             InformationForAllProgram = new AllInfo();
 
             //bool ShowRegistration = true;
@@ -396,7 +549,7 @@ namespace ReSchedule
 
         private void CloseWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.Shutdown();
+            Hide();
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -997,8 +1150,8 @@ namespace ReSchedule
             SettingsProperty TemplateOfSettings = new SettingsProperty();
             TemplateOfSettings.MessageAboutLessonStart = StartLesson.IsChecked;
             TemplateOfSettings.MessageAboutLessonEnd = EndLesson.IsChecked;
-            TemplateOfSettings.TimeBeforeEndOfCurrentLesson = EndLesson.IsChecked;
-            TemplateOfSettings.TimeBeforeBeginNextLesson = TimeForBeginLesson.IsChecked;
+            TemplateOfSettings.TimeBeginEndOfLesson = EndLesson.IsChecked;
+            TemplateOfSettings.NextLesson = TimeForBeginLesson.IsChecked;
             TemplateOfSettings.StartWithSystem = RunWithSystem.IsChecked;
 
             TemplateOfData.SetSettings(TemplateOfSettings);
@@ -1031,6 +1184,21 @@ namespace ReSchedule
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             WriteInfoInFile(InformationForAllProgram);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AAA();
+        }
+
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ShowApp_Click(object sender, RoutedEventArgs e)
+        {
+            Show();
         }
     }
 }

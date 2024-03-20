@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         xmlns:local="clr-namespace:ReSchedule"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" WindowStartupLocation="CenterScreen" Background="#041723" Closing="Window_Closing">
     <Grid>
@@ -12,6 +13,44 @@
             <RowDefinition Height="21"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+
+        <tb:TaskbarIcon IconSource="Images/icon.ico" ToolTipText="hello world" PopupActivation="RightClick">
+            <tb:TaskbarIcon.TrayPopup>
+                <Border Background="#041723" CornerRadius="15" Width="160">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Foreground="#CED6E3" FontSize="16" FontFamily="Inter" TextAlignment="Center" Padding="0,7,0,7">
+                            <Run FontWeight="Regular">
+                                ReSchedule
+                            </Run>
+                        </TextBlock>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ContextMenuButton}" Click="ShowApp_Click">
+                            <TextBlock FontSize="14" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Light">
+                                    Розгорнути
+                                </Run>
+                            </TextBlock>
+                        </Button>
+                        
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ContextMenuButton}" Click="CloseApp_Click">
+                            <TextBlock FontSize="14" Foreground="#CED6E3" FontFamily="Nunito">
+                                <Run FontWeight="Light">
+                                    Закрити
+                                </Run>
+                            </TextBlock>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </tb:TaskbarIcon.TrayPopup>
+            <tb:TaskbarIcon.TrayToolTip>
+                <Border Background="#041723" CornerRadius="15" Width="166">
+                    <StackPanel x:Name="InformationToolTip" Orientation="Vertical">
+                        
+                    </StackPanel>
+                </Border>
+            </tb:TaskbarIcon.TrayToolTip>
+
+        </tb:TaskbarIcon>
+
         <Grid Grid.Row="1" Panel.ZIndex="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="11"/>
@@ -88,8 +127,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="14"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="1">
+
+                    <Button Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
+
+                    <Border x:Name="BorderLesson1" CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -138,7 +179,7 @@
                         </Grid>
                     </Border>
 
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="3">
+                    <Border x:Name="BorderLesson2" CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="3">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -186,7 +227,7 @@
                         </Grid>
                     </Border>
 
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="5">
+                    <Border x:Name="BorderLesson3" CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -234,7 +275,7 @@
                         </Grid>
                     </Border>
 
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="1">
+                    <Border x:Name="BorderLesson4" CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -282,7 +323,7 @@
                         </Grid>
                     </Border>
 
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="3">
+                    <Border x:Name="BorderLesson5" CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="3">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
@@ -330,7 +371,7 @@
                         </Grid>
                     </Border>
 
-                    <Border CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="5">
+                    <Border x:Name="BorderLesson6" CornerRadius="17" Background="#233350" Grid.Row="3" Grid.Column="5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
