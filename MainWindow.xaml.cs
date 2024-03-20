@@ -151,10 +151,15 @@ namespace ReSchedule
             SetList(5, info.Friday);
         }
 
-        public void SetSettings(SettingsProperty SProperty)
+        public SettingsProperty SetSettings(SettingsProperty SProperty)
         {
-            Properties = SProperty;
+            SettingsProperty originalSettings = Properties; // Сохраняем оригинальные настройки
+            originalSettings.SetAllProperties(SProperty); // Применяем новые настройки
+
+            Properties = originalSettings; // Обновляем свойства в объекте CurrentSettings
+            return Properties; // Возвращаем обновленные настройки
         }
+
     }
 
     struct LessonInfo
@@ -182,25 +187,31 @@ namespace ReSchedule
 
         static Border CurrentLessonBorder;
 
+        static DateTime CurrentDate;
+
+        public static void UpgradeSettingsData(AllInfo updSettings)
+        {
+            CurrentSettings = updSettings;
+        }
+
         static void SetNewLessonBorder(Border newBorder)
         {
             CurrentLessonBorder = newBorder;
         }
-
+        //Баг с применением настроек при импорте всех данных
         static void StartLessonBorder()
         {
-            // Создаем новый объект LinearGradientBrush
-            LinearGradientBrush gradientBrush = new LinearGradientBrush();
+            CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
 
-            // Устанавливаем точки начала и конца градиента
-            gradientBrush.StartPoint = new Point(0, 0);
-            gradientBrush.EndPoint = new Point(1, 1);
+            ColorAnimation colorAnimation = new ColorAnimation
+            {
+                From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
+                To = (Color)ColorConverter.ConvertFromString("#5523AF7F"),
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
 
-            // Добавляем стопы градиента
-            gradientBrush.GradientStops.Add(new GradientStop(Colors.Red, 0.0));
-            gradientBrush.GradientStops.Add(new GradientStop(Colors.Blue, 1.0));
-
-            CurrentLessonBorder.Background = gradientBrush;
+            // Применяем анимацию к свойству Color фона
+            CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
         }
 
         static void EndLessonBorder()
@@ -208,8 +219,10 @@ namespace ReSchedule
 
         }
 
-        static void RemakeContextMenuMouseOver()
+        public static void RemakeContextMenuMouseOver()
         {
+            AllElementsInWindow.InformationToolTip.Children.Clear();
+
             TextBlock textBlock = new TextBlock
             {
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CED6E3")),
@@ -243,7 +256,7 @@ namespace ReSchedule
 
                 TextBlock txtBlock = new TextBlock
                 {
-                    Name="ContextTimeBeforeEndOfLesson",
+                    //Name = "ContextTimeBeforeEndOfCurrentLesson",
                     Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CED6E3")),
                     FontSize = 14,
                     FontFamily = new FontFamily("Inter"),
@@ -257,8 +270,45 @@ namespace ReSchedule
                 run = new Run
                 {
                     FontWeight = FontWeights.Light,
-                    Text = "AAAAAAA",
+                    Text = "Завантаження даних...",
                 };
+
+                txtBlock.SetValue(FrameworkElement.NameProperty, "ContextTimeBeforeEndOfCurrentLesson");
+
+                txtBlock.Inlines.Add(run);
+
+                AllElementsInWindow.InformationToolTip.Children.Add(txtBlock);
+            }
+
+            if (CurrentSettings.Properties.NextLesson == true)
+            {
+                Separator separator = new Separator
+                {
+                    Width = 147,
+                };
+
+                AllElementsInWindow.InformationToolTip.Children.Add(separator);
+
+                TextBlock txtBlock = new TextBlock
+                {
+                    //Name = "ContextTimeBeforeEndOfCurrentLesson",
+                    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#CED6E3")),
+                    FontSize = 14,
+                    FontFamily = new FontFamily("Inter"),
+                    TextAlignment = TextAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextWrapping = TextWrapping.Wrap,
+                    Padding = new Thickness(3, 7, 3, 7)
+                };
+
+                run = new Run
+                {
+                    FontWeight = FontWeights.Light,
+                    Text = "Наступна пара завантажується...",
+                };
+
+                txtBlock.SetValue(FrameworkElement.NameProperty, "ContextNextLesson");
 
                 txtBlock.Inlines.Add(run);
 
@@ -277,6 +327,8 @@ namespace ReSchedule
             CurrentNumberOfDay = GetWeekNumber();
 
             CurrentNameOfDay = GetDaysNameByNumber(CurrentNumberOfDay);
+
+            CurrentDate = DateTime.Now;
 
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
 
@@ -327,7 +379,7 @@ namespace ReSchedule
             }
         }
         
-        static void TimeBeforeEndOfLessonCreate() //Когда секунді переваливают за 30 - оно раньше времени вісчитівает некст минуту
+        static void TimeBeforeEndOfLessonCreate()
         {
             TimeSpan currentTime = DateTime.Now.TimeOfDay;
             
@@ -359,19 +411,33 @@ namespace ReSchedule
 
             TimeSpan TimeDiff = new TimeSpan();
 
-            StackPanel tempContextStackPanel = AllElementsInWindow.FindName("InformationToolTip") as StackPanel;
+            TextBlock tempContextTempBlock = AllElementsInWindow.InformationToolTip.Children.OfType<TextBlock>().FirstOrDefault(tb => tb.Name == "ContextTimeBeforeEndOfCurrentLesson");
+            
+            TextBlock tempContextTempBlockNextLesson = AllElementsInWindow.InformationToolTip.Children.OfType<TextBlock>().FirstOrDefault(tb => tb.Name == "ContextNextLesson");
 
-            TextBlock tempContextTempBlock = tempContextStackPanel.FindName("ContextTimeBeforeEndOfLesson") as TextBlock;
-
-            if (tempContextTempBlock != null)
+            if (tempContextTempBlockNextLesson != null)
             {
-                tempContextTempBlock.Text = "До закінчення (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+                tempContextTempBlockNextLesson.Text = "Наступна пара: відсутня";
             }
+
+            //if (tempContextTempBlock != null)
+            //{
+            //    tempContextTempBlock.Text = "До закінчення (хв): " + ((int)TimeDiff.TotalMinutes + 1).ToString();
+            //}
+            bool AlreadyHaveANextLesson = false;
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
                 if (currentTime < InformationAboutLessons[i].LessonEnd)
                 {
+                    if (!AlreadyHaveANextLesson)
+                    {
+                        AlreadyHaveANextLesson = true;
+                        if (tempContextTempBlockNextLesson != null)
+                        {
+                            tempContextTempBlockNextLesson.Text = $"Наступна пара: {InformationAboutLessons[i].NameOfLesson.lesson}";
+                        }
+                    }
                     if (currentTime > InformationAboutLessons[i].LessonBegin)
                     {
                         TimeDiff = InformationAboutLessons[i].LessonBegin - currentTime;
@@ -395,11 +461,12 @@ namespace ReSchedule
                 }
                 else
                 {
-                    tempContextTempBlock.Text = "Пари закінчились!";
+                    if (tempContextTempBlock != null)
+                    {
+                        tempContextTempBlock.Text = "Пари закінчились!";
+                    }
                 }
             }
-
-
             
         }
         static public void SetSettings()
@@ -418,7 +485,10 @@ namespace ReSchedule
 
                 ContextTimeBeforeEndOfLesson();
 
-                //Добавить проверку на следующий день
+                if (TempDate.Day != CurrentDate.Day || TempDate.Month != CurrentDate.Month || TempDate.Year != CurrentDate.Year)
+                {
+                    StartManage(CurrentSettings, AllElementsInWindow);
+                }
 
                 AllElementsInWindow.CurrentTime.Text = CurrentTextTime;
             };
@@ -1154,7 +1224,7 @@ namespace ReSchedule
             TemplateOfSettings.NextLesson = TimeForBeginLesson.IsChecked;
             TemplateOfSettings.StartWithSystem = RunWithSystem.IsChecked;
 
-            TemplateOfData.SetSettings(TemplateOfSettings);
+            TemplateOfData.Properties.SetAllProperties(TemplateOfSettings);//Тут было дело поменяял способ сохранения
 
             WriteInfoInFile(TemplateOfData);
 

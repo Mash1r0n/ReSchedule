@@ -20,7 +20,7 @@ namespace ReSchedule
     /// <summary>
     /// Логика взаимодействия для SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : Window    
     {
         AllInfo CurrentSettings;
 
@@ -63,12 +63,17 @@ namespace ReSchedule
 
             tempSettings.StartWithSystem = RunWithSystem.IsChecked;
 
-            CurrentSettings.SetSettings(tempSettings);
+            CurrentSettings.Properties.SetAllProperties(CurrentSettings.SetSettings(tempSettings));
         }
+
 
         private void XButton_Click(object sender, RoutedEventArgs e)
         {
             SetSettings();
+
+            ManageLessons.UpgradeSettingsData(CurrentSettings);
+
+            ManageLessons.RemakeContextMenuMouseOver();
 
             WindowData.WriteInfoInFile(CurrentSettings);
 
@@ -226,6 +231,13 @@ namespace ReSchedule
             return true;
         }
 
+        void ExportImportButtonClose()
+        {
+            ManageLessons.UpgradeSettingsData(CurrentSettings);
+            ManageLessons.RemakeContextMenuMouseOver();
+            Close();
+        }
+
         private void ImportLessonsButton_Click(object sender, RoutedEventArgs e)
         {
             string AnyFilePath;
@@ -239,6 +251,7 @@ namespace ReSchedule
             {
                 AnyFilePath = openFileDialog.FileName;
                 ReadLessonsFromFile(CurrentSettings, AnyFilePath);
+                ExportImportButtonClose();
             }
         }
 
@@ -255,6 +268,7 @@ namespace ReSchedule
             {
                 AnyFilePath = openFileDialog.FileName;
                 ReadInfoFromFile(ref CurrentSettings, AnyFilePath);
+                ExportImportButtonClose();
             }
         }
 
@@ -270,6 +284,7 @@ namespace ReSchedule
             {
                 AnyFilePath = saveFileDialog.FileName;
                 WriteLessonsInFile(CurrentSettings, AnyFilePath);
+                ExportImportButtonClose();
             }
         }
 
@@ -286,7 +301,13 @@ namespace ReSchedule
             {
                 AnyFilePath = saveFileDialog.FileName;
                 WriteInfoInFile(CurrentSettings, AnyFilePath);
+                ExportImportButtonClose();
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

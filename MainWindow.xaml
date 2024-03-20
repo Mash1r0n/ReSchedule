@@ -43,7 +43,7 @@
             </tb:TaskbarIcon.TrayPopup>
             <tb:TaskbarIcon.TrayToolTip>
                 <Border Background="#041723" CornerRadius="15" Width="166">
-                    <StackPanel x:Name="InformationToolTip" Orientation="Vertical">
+                    <StackPanel x:Name="InformationToolTip" Orientation="Vertical" >
                         
                     </StackPanel>
                 </Border>
