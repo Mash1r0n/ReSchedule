@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\AllDaysForWatchLessons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ChangeLessonButtons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ChangeLessonsFormButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ImportExportButtons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

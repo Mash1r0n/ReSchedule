@@ -20,7 +20,9 @@ namespace ReSchedule
     public partial class SettingsWindow : Window
     {
         AllInfo CurrentSettings;
-        public SettingsWindow(AllInfo Settings)
+
+        MainWindow WindowData;
+        public SettingsWindow(AllInfo Settings, MainWindow windowData)
         {
             InitializeComponent();
 
@@ -29,6 +31,8 @@ namespace ReSchedule
             ImportAndExport.Visibility = Visibility.Hidden;
 
             CurrentSettings = Settings;
+
+            WindowData = windowData;
 
             ParseSettings();
         }
@@ -141,6 +145,25 @@ namespace ReSchedule
 
                 default: { throw new Exception("Інших дій не передбачено"); }
             }
+        }
+
+        private void ImportLessonsButton_Click(object sender, RoutedEventArgs e)
+        {
+            string AnyFilePath;
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
+            saveFileDialog.Title = "Зберегти заняття";
+            bool? saveResult = saveFileDialog.ShowDialog();
+            if (saveResult == true)
+            {
+                AnyFilePath = saveFileDialog.FileName;
+                WindowData.WriteLessonsInFile(CurrentSettings, AnyFilePath);
+            }
+        }
+
+        private void ImportAllInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

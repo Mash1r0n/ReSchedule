@@ -178,6 +178,8 @@ namespace ReSchedule
 
         static public  string CurrentNameOfDay { get; private set; }
 
+        public const int CountOfManagedDays = 5;
+
         static public void StartManage(AllInfo AllCurrentInfo, MainWindow AEIW)
         {
             CurrentNumberOfDay = GetWeekNumber();
@@ -874,7 +876,7 @@ namespace ReSchedule
             return false;
         }
 
-        void WriteInfoInFile(AllInfo allinfo)
+        public void WriteInfoInFile(AllInfo allinfo)
         {
             string jsonString = JsonConvert.SerializeObject(allinfo);
 
@@ -884,7 +886,27 @@ namespace ReSchedule
             }
         }
 
-        bool ReadInfoFromFile(out AllInfo obj)
+        public void WriteInfoInFile(AllInfo allinfo, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(allinfo);
+
+            using (StreamWriter write = new StreamWriter(filePath, false))
+            {
+                write.WriteLineAsync(jsonString);
+            }
+        }
+
+        public void WriteLessonsInFile(AllLessons alllessons, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(alllessons);
+
+            using (StreamWriter write = new StreamWriter(filePath, false))
+            {
+                write.WriteLineAsync(jsonString);
+            }
+        }
+
+        public bool ReadInfoFromFile(out AllInfo obj)
         {
             obj = null;
             string filePath = "Information.drs";
@@ -898,6 +920,56 @@ namespace ReSchedule
             {
                 string jsonString = File.ReadAllText(filePath);
                 obj = JsonConvert.DeserializeObject<AllInfo>(jsonString);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ReadInfoFromFile(AllInfo obj, string filePath)
+        {
+            AllInfo tempLessons;
+
+            if (!File.Exists(filePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                tempLessons = JsonConvert.DeserializeObject<AllInfo>(jsonString);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ReadLessonsFromFile(AllInfo obj, string filePath)
+        {
+            AllLessons tempLessons;
+
+            if (!File.Exists(filePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                tempLessons = JsonConvert.DeserializeObject<AllLessons>(jsonString);
+
+                obj.SetList(1, tempLessons.Monday);
+                obj.SetList(2, tempLessons.Thuesday);
+                obj.SetList(3, tempLessons.Wednesday);
+                obj.SetList(4, tempLessons.Thursday);
+                obj.SetList(5, tempLessons.Friday);
             }
             catch
             {
@@ -1000,7 +1072,7 @@ namespace ReSchedule
 
         private void ShowSettingsClick(object sender, RoutedEventArgs e)
         {
-            SettingsWindow ShowAllSettings = new SettingsWindow(InformationForAllProgram);
+            SettingsWindow ShowAllSettings = new SettingsWindow(InformationForAllProgram, this);
             ShowAllSettings.Owner = this;
             ShowAllSettings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             ShowAllSettings.ShowDialog();
