@@ -227,7 +227,7 @@
                             <ColumnDefinition Width="10"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ImportExportButton}">
+                        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ExportAllInfo_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ExportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,0,0">
@@ -238,7 +238,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ImportExportButton}">
+                        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ImportExportButton}" Click="ExportLessons_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Width="64" Height="64" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\ExportImage.png"/>
                                 <TextBlock Foreground="#CED6E3" FontSize="28" FontFamily="Roboto" Padding="18,15,0,0">

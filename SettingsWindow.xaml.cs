@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +25,7 @@ namespace ReSchedule
         AllInfo CurrentSettings;
 
         MainWindow WindowData;
-        public SettingsWindow(AllInfo Settings, MainWindow windowData)
+        public SettingsWindow(ref AllInfo Settings, MainWindow windowData)
         {
             InitializeComponent();
 
@@ -66,6 +69,8 @@ namespace ReSchedule
         private void XButton_Click(object sender, RoutedEventArgs e)
         {
             SetSettings();
+
+            WindowData.WriteInfoInFile(CurrentSettings);
 
             this.Close();
         }
@@ -147,9 +152,84 @@ namespace ReSchedule
             }
         }
 
+        public void WriteInfoInFile(AllInfo allinfo, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(allinfo);
+
+            using (StreamWriter write = new StreamWriter(filePath, false))
+            {
+                write.WriteLineAsync(jsonString);
+            }
+        }
+
+        public void WriteLessonsInFile(AllLessons alllessons, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(alllessons);
+
+            using (StreamWriter write = new StreamWriter(filePath, false))
+            {
+                write.WriteLineAsync(jsonString);
+            }
+        }
+
+        public bool ReadInfoFromFile(ref AllInfo obj, string filePath)
+        {
+
+            if (!File.Exists(filePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+
+                obj.SetNewData(JsonConvert.DeserializeObject<AllInfo>(jsonString));
+
+                ManageLessons.StartManage(obj, WindowData);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ReadLessonsFromFile(AllInfo obj, string filePath)
+        {
+            AllLessons tempLessons;
+
+            if (!File.Exists(filePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                tempLessons = JsonConvert.DeserializeObject<AllLessons>(jsonString);
+
+                obj.SetList(1, tempLessons.Monday);
+                obj.SetList(2, tempLessons.Thuesday);
+                obj.SetList(3, tempLessons.Wednesday);
+                obj.SetList(4, tempLessons.Thursday);
+                obj.SetList(5, tempLessons.Friday);
+
+                ManageLessons.StartManage(obj, WindowData);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void ImportLessonsButton_Click(object sender, RoutedEventArgs e)
         {
             string AnyFilePath;
+
             Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
             saveFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
             saveFileDialog.Title = "Зберегти заняття";
@@ -157,13 +237,56 @@ namespace ReSchedule
             if (saveResult == true)
             {
                 AnyFilePath = saveFileDialog.FileName;
-                WindowData.WriteLessonsInFile(CurrentSettings, AnyFilePath);
+                WriteLessonsInFile(CurrentSettings, AnyFilePath);
             }
         }
 
         private void ImportAllInfo_Click(object sender, RoutedEventArgs e)
         {
+            string AnyFilePath;
 
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter = "Файли з даними програми (*.drs)|*.drs";
+            saveFileDialog.Title = "Зберегти усі дані";
+            bool? saveResult = saveFileDialog.ShowDialog();
+
+            if (saveResult == true)
+            {
+                AnyFilePath = saveFileDialog.FileName;
+                WriteInfoInFile(CurrentSettings, AnyFilePath);
+            }
+        }
+
+        private void ExportLessons_Click(object sender, RoutedEventArgs e)
+        {
+            string AnyFilePath;
+
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Title = "Відкрити файл занять";
+            openFileDialog.Filter = "Файли з даними занять (*.drl)|*.drl";
+            bool? openResult = openFileDialog.ShowDialog();
+
+            if (openResult == true)
+            {
+                AnyFilePath = openFileDialog.FileName;
+                ReadLessonsFromFile(CurrentSettings, AnyFilePath);
+            }
+        }
+
+        private void ExportAllInfo_Click(object sender, RoutedEventArgs e)
+        {
+            string AnyFilePath;
+
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Title = "Відкрити файл з даними програми";
+            openFileDialog.Filter = "Файли з даними програми (*.drs)|*.drs";
+            bool? openResult = openFileDialog.ShowDialog();
+
+            if (openResult == true)
+            {
+                AnyFilePath = openFileDialog.FileName;
+                ReadInfoFromFile(ref CurrentSettings, AnyFilePath);
+            }
         }
     }
 }

@@ -147,6 +147,16 @@ namespace ReSchedule
         [JsonProperty]
         public SettingsProperty Properties { get; private set; } = new SettingsProperty();
 
+        public void SetNewData(AllInfo info)
+        {
+            Properties = info.Properties;
+            SetList(1, info.Monday);
+            SetList(2, info.Thuesday);
+            SetList(3, info.Wednesday);
+            SetList(4, info.Thursday);
+            SetList(5, info.Friday);
+        }
+
         public void SetSettings(SettingsProperty SProperty)
         {
             Properties = SProperty;
@@ -180,6 +190,8 @@ namespace ReSchedule
 
         public const int CountOfManagedDays = 5;
 
+        
+
         static public void StartManage(AllInfo AllCurrentInfo, MainWindow AEIW)
         {
             CurrentNumberOfDay = GetWeekNumber();
@@ -187,6 +199,8 @@ namespace ReSchedule
             CurrentNameOfDay = GetDaysNameByNumber(CurrentNumberOfDay);
 
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
+
+            InformationAboutLessons = new List<LessonInfo>();
 
             for (int i = 0; i < 6; i++)
             {
@@ -338,6 +352,8 @@ namespace ReSchedule
         //private Point anchorPoint;
 
         AllInfo InformationForAllProgram;
+
+       
 
         public MainWindow()
         {
@@ -886,25 +902,7 @@ namespace ReSchedule
             }
         }
 
-        public void WriteInfoInFile(AllInfo allinfo, string filePath)
-        {
-            string jsonString = JsonConvert.SerializeObject(allinfo);
-
-            using (StreamWriter write = new StreamWriter(filePath, false))
-            {
-                write.WriteLineAsync(jsonString);
-            }
-        }
-
-        public void WriteLessonsInFile(AllLessons alllessons, string filePath)
-        {
-            string jsonString = JsonConvert.SerializeObject(alllessons);
-
-            using (StreamWriter write = new StreamWriter(filePath, false))
-            {
-                write.WriteLineAsync(jsonString);
-            }
-        }
+        
 
         public bool ReadInfoFromFile(out AllInfo obj)
         {
@@ -929,55 +927,7 @@ namespace ReSchedule
             return true;
         }
 
-        public bool ReadInfoFromFile(AllInfo obj, string filePath)
-        {
-            AllInfo tempLessons;
-
-            if (!File.Exists(filePath))
-            {
-                return false;
-            }
-
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                tempLessons = JsonConvert.DeserializeObject<AllInfo>(jsonString);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool ReadLessonsFromFile(AllInfo obj, string filePath)
-        {
-            AllLessons tempLessons;
-
-            if (!File.Exists(filePath))
-            {
-                return false;
-            }
-
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                tempLessons = JsonConvert.DeserializeObject<AllLessons>(jsonString);
-
-                obj.SetList(1, tempLessons.Monday);
-                obj.SetList(2, tempLessons.Thuesday);
-                obj.SetList(3, tempLessons.Wednesday);
-                obj.SetList(4, tempLessons.Thursday);
-                obj.SetList(5, tempLessons.Friday);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
+        
 
         //void ApplySettings(AllInfo allinfo)
         //{
@@ -1072,7 +1022,7 @@ namespace ReSchedule
 
         private void ShowSettingsClick(object sender, RoutedEventArgs e)
         {
-            SettingsWindow ShowAllSettings = new SettingsWindow(InformationForAllProgram, this);
+            SettingsWindow ShowAllSettings = new SettingsWindow(ref InformationForAllProgram, this);
             ShowAllSettings.Owner = this;
             ShowAllSettings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             ShowAllSettings.ShowDialog();
