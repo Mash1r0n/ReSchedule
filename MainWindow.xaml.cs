@@ -544,7 +544,7 @@ namespace ReSchedule
             //}
             bool AlreadyHaveANextLesson = false;
 
-            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой.
+            //TODO: Доделать тот дропс на регистрации и сделать уведомления.
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
@@ -1476,7 +1476,11 @@ namespace ReSchedule
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _mutex?.Close();
-            WriteInfoInFile(InformationForAllProgram);
+            if (Registration.Visibility != Visibility.Visible)
+            {
+                WriteInfoInFile(InformationForAllProgram);
+            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -1492,6 +1496,108 @@ namespace ReSchedule
         private void ShowApp_Click(object sender, RoutedEventArgs e)
         {
             Show();
+        }
+
+        void EndRegistrationAnimation()
+        {
+            DoubleAnimation opacityAnimation = new DoubleAnimation();
+            opacityAnimation.From = 1.0;
+            opacityAnimation.To = 0.0;
+            opacityAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(opacityAnimation);
+
+            Storyboard.SetTarget(opacityAnimation, Registration);
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(OpacityProperty));
+
+            storyboard.Completed += new EventHandler(Storyboard_Completed);
+
+            storyboard.Begin();
+
+
+        }
+
+        private void ChooseTheFile_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            string AnyFilePath;
+
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Title = "Відкрити файл з даними програми";
+            openFileDialog.Filter = "Файли з даними програми (*.drs)|*.drs";
+            bool? openResult = openFileDialog.ShowDialog();
+
+            if (openResult == true)
+            {
+                AnyFilePath = openFileDialog.FileName;
+                if (ReadInfoFromFile(out InformationForAllProgram, AnyFilePath))
+                {
+                    ManageLessons.StartManage(InformationForAllProgram, this);
+                    EndRegistrationAnimation();
+                }
+                else
+                {
+                    //Если файл не удалось считать
+                }
+            }
+        }
+
+        public bool ReadInfoFromFile(out AllInfo obj, string filePath)
+        {
+            obj = null;
+
+            if (!File.Exists(filePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                obj = JsonConvert.DeserializeObject<AllInfo>(jsonString);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Storyboard_Completed(object sender, EventArgs e)
+        {
+            Registration.Visibility = Visibility.Hidden;
+        }
+
+        private void DropRectangle_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string file in files)
+                {
+                    MessageBox.Show(file, "Заголовок", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (file.Substring(file.Length - 4) == ".drs")
+                    {
+                        if (ReadInfoFromFile(out InformationForAllProgram, file))
+                        {
+                            EndRegistrationAnimation();
+                            ManageLessons.StartManage(InformationForAllProgram, this);
+                        }
+                        else
+                        {
+                            //Если не удалось считать
+                        }
+
+                    }
+                    else
+                    {
+                        //Если файл не тот
+                    }
+                    break;
+                }
+            }
         }
     }
 }

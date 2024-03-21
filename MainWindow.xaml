@@ -424,7 +424,7 @@
             </Border>
         </Grid>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="3" VerticalScrollBarVisibility="Hidden" x:Name="Registration" Visibility="Hidden">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Hidden" Panel.ZIndex="3" VerticalScrollBarVisibility="Hidden" x:Name="Registration" Visibility="Visible" >
             <Grid Width="6168" Background="#041723">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1028"/>
@@ -447,18 +447,18 @@
                     </Grid>
                     <TextBlock Width="1028" Height="57" TextAlignment="Center" FontFamily="Inter" FontSize="16" Foreground="#CED6E3" Padding="0,3,0,0">У разі успішного зчитування даних, ви одразу зможете приступити до користування програмою</TextBlock>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Rectangle AllowDrop="True" Width="632px" Height="321px" Stroke="#C4C4C4" Fill="Transparent" StrokeThickness="3" RadiusX="30" RadiusY="30"> <!--Сделать так, что если начинается дроп - сделать невидимыми элемент в центре--> 
+                        <Rectangle x:Name="DropRectangle" AllowDrop="True" Drop="DropRectangle_Drop" Width="632px" Height="321px" Stroke="#C4C4C4" Fill="Transparent" StrokeThickness="3" RadiusX="30" RadiusY="30"> <!--Сделать так, что если начинается дроп - сделать невидимыми элемент в центре--> 
                             <Rectangle.StrokeDashArray>
                                 <DoubleCollection>
                                     3
                                 </DoubleCollection>
                             </Rectangle.StrokeDashArray>
                         </Rectangle>
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <StackPanel x:Name="DropStackPanel" AllowDrop="True" Drop="DropRectangle_Drop" Orientation="Vertical" VerticalAlignment="Center">
                             <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\DropHere.png" Width="59" Height="59" Margin="5,0,9.5,0"/>
                             <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> Перетягніть сюди файл формату .drs</TextBlock>
                             <TextBlock FontFamily="Inter" Foreground="#8D9EA5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"> або</TextBlock>
-                            <TextBlock x:Name="ChooseTheFile" FontFamily="Inter"  FontWeight="Bold" Foreground="#438EAD" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"><Underline>оберіть його</Underline></TextBlock>
+                            <TextBlock x:Name="ChooseTheFile" FontFamily="Inter"  FontWeight="Bold" Cursor="Hand" MouseLeftButtonUp="ChooseTheFile_MouseLeftButtonUp" Foreground="#438EAD" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"><Underline>оберіть його</Underline></TextBlock>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
