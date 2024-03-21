@@ -187,42 +187,52 @@ namespace ReSchedule
             IsColorized = false;
         }
 
-        public void SetNewLessonBorder(Border newBorder)
+        public void SetNewLessonBorder(Border newBorder, bool EndCurrentBorder)
         {
-            EndLessonBorder();
+            if (EndCurrentBorder)
+            {
+                EndLessonBorder();
+            }
+
             CurrentLessonBorder = newBorder;
         }
 
         public void StartLessonBorder()
         {
-            CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
-
-            ColorAnimation colorAnimation = new ColorAnimation
+            if (CurrentLessonBorder != null)
             {
-                From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
-                To = (Color)ColorConverter.ConvertFromString("#5523AF7F"),
-                Duration = TimeSpan.FromSeconds(0.5)
-            };
+                CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
 
-            CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+                ColorAnimation colorAnimation = new ColorAnimation
+                {
+                    From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
+                    To = (Color)ColorConverter.ConvertFromString("#5523AF7F"),
+                    Duration = TimeSpan.FromSeconds(0.5)
+                };
 
-            IsColorized = true;
+                CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+                IsColorized = true;
+            }
         }
 
         public void EndLessonBorder()
         {
-            CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5523AF7F"));
-
-            ColorAnimation colorAnimation = new ColorAnimation
+            if (CurrentLessonBorder != null)
             {
-                From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
-                To = (Color)ColorConverter.ConvertFromString("#233350"),
-                Duration = TimeSpan.FromSeconds(0.5)
-            };
+                CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5523AF7F"));
 
-            CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+                ColorAnimation colorAnimation = new ColorAnimation
+                {
+                    From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
+                    To = (Color)ColorConverter.ConvertFromString("#233350"),
+                    Duration = TimeSpan.FromSeconds(0.5)
+                };
 
-            IsColorized =false;
+                CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+                IsColorized = false;
+            }
         }
     }
 
@@ -458,23 +468,31 @@ namespace ReSchedule
             {
                 if (currentTime < InformationAboutLessons[i].LessonEnd)
                 {
-                    if (ManagedBorder.CurrentLessonBorder.Name != $"BorderLesson{i + 1}")
+                    if (InformationAboutLessons[i].NameOfLesson.lesson == "-")
                     {
-                        ManagedBorder.SetNewLessonBorder(AllElementsInWindow.FindName($"BorderLesson{i + 1}") as Border);
+                        ManagedBorder.SetNewLessonBorder(AllElementsInWindow.FindName($"BorderLesson{0}") as Border, ManagedBorder.IsColorized);
                     }
 
-                    if (currentTime > InformationAboutLessons[i].LessonBegin)
-                    {
-                        if (!ManagedBorder.IsColorized)
-                        {
-                            ManagedBorder.StartLessonBorder();
-                        }
-                    }
                     else
                     {
-                        if (ManagedBorder.IsColorized)
+                        if (ManagedBorder.CurrentLessonBorder.Name != $"BorderLesson{i + 1}")
                         {
-                            ManagedBorder.EndLessonBorder();
+                            ManagedBorder.SetNewLessonBorder(AllElementsInWindow.FindName($"BorderLesson{i + 1}") as Border, ManagedBorder.IsColorized);
+                        }
+
+                        if (currentTime > InformationAboutLessons[i].LessonBegin)
+                        {
+                            if (!ManagedBorder.IsColorized)
+                            {
+                                ManagedBorder.StartLessonBorder();
+                            }
+                        }
+                        else
+                        {
+                            if (ManagedBorder.IsColorized)
+                            {
+                                ManagedBorder.EndLessonBorder();
+                            }
                         }
                     }
                 }

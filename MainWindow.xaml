@@ -130,6 +130,8 @@
 
                     <Button Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
 
+                    <Border x:Name="BorderLesson0" Grid.Row="1" Grid.Column="6" Visibility="Hidden"/>
+
                     <Border x:Name="BorderLesson1" CornerRadius="17" Background="#233350" Grid.Row="1" Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>
