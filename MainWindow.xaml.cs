@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -236,6 +238,84 @@ namespace ReSchedule
         }
     }
 
+    public static class AutoStartManager
+    {
+        private const string AppName = "ReSchedule";
+        private const string RegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
+
+        public static bool AddToStartup()
+        {
+            try
+            {
+                RegistryKey rkApp = Registry.CurrentUser.OpenSubKey(RegistryKey, true);
+
+                if (rkApp == null)
+                    rkApp = Registry.CurrentUser.CreateSubKey(RegistryKey);
+
+                rkApp.SetValue(AppName, System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+                rkApp.Close();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool RemoveFromStartup()
+        {
+            try
+            {
+                RegistryKey rkApp = Registry.CurrentUser.OpenSubKey(RegistryKey, true);
+
+                if (rkApp == null)
+                    return true;
+
+                rkApp.DeleteValue(AppName, false);
+
+                rkApp.Close();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool IsInStartup()
+        {
+            try
+            {
+                RegistryKey rkApp = Registry.CurrentUser.OpenSubKey(RegistryKey, true);
+
+                if (rkApp == null)
+                    return false;
+
+                string[] valueNames = rkApp.GetValueNames();
+                foreach (string valueName in valueNames)
+                {
+                    if (valueName == AppName)
+                    {
+                        rkApp.Close();
+                        return true;
+                    }
+                }
+
+                rkApp.Close();
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+
+
     static class ManageLessons
     {
         static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
@@ -464,7 +544,7 @@ namespace ReSchedule
             //}
             bool AlreadyHaveANextLesson = false;
 
-            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой. Ещё сделать только 1 запуск программы возможный
+            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой.
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
@@ -700,11 +780,30 @@ namespace ReSchedule
             }
         }
 
+        private const string MutexName = "Global\\ReSchedule359";
+        private bool _mutexCreated;
+        private Mutex _mutex;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            _mutex = new Mutex(true, MutexName, out _mutexCreated);
+
+            if (!_mutexCreated)
+            {
+                MessageBox.Show("Програма вже запущена!", "Помлика запуску програми", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+                return;
+            }
+
+            bool isNewInstance;
+            Mutex mutex = new Mutex(true, "{8F6F0AC5-B9A1-55fd-A8CF-73F04E6BDE8F}", out isNewInstance);
+            if (!isNewInstance)
+            {
+                MessageBox.Show("Приложение уже запущено");
+                Application.Current.Shutdown();
+            }
 
             const int MinutesForRegistration = 7;
             const string TextAfterMinutesStages = "хвилин";
@@ -1376,6 +1475,7 @@ namespace ReSchedule
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            _mutex?.Close();
             WriteInfoInFile(InformationForAllProgram);
         }
 

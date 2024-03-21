@@ -146,7 +146,7 @@
                         Запускати з системою
                     </Run>
                                     </TextBlock>
-                                    <ToggleButton x:Name="RunWithSystem" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0"/>
+                                    <ToggleButton x:Name="RunWithSystem" HorizontalAlignment="Right" Style="{StaticResource ToggleButtonStyle}" Margin="0,0,6,0" Click="RunWithSystem_Click"/>
                                 </Grid>
                             </StackPanel>
                         </Border>

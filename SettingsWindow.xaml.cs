@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -48,7 +49,7 @@ namespace ReSchedule
             TimeBeforeCurrentLessonEnd.IsChecked = CurrentSettings.Properties.TimeBeginEndOfLesson;
             TimeBeforeBeginNextLesson.IsChecked = CurrentSettings.Properties.NextLesson;
 
-            RunWithSystem.IsChecked = CurrentSettings.Properties.StartWithSystem; 
+            RunWithSystem.IsChecked = AutoStartManager.IsInStartup(); 
         }
 
         void SetSettings()
@@ -317,6 +318,24 @@ namespace ReSchedule
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             
+        }
+
+        private void RunWithSystem_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton tempToggleButton = sender as ToggleButton;
+            if (tempToggleButton.IsChecked == false) {
+                if (!AutoStartManager.RemoveFromStartup())
+                {
+                    MessageBox.Show("Помилка!", "У вас недостатньо для виконання цієї дії", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                if (!AutoStartManager.AddToStartup())
+                {
+                    MessageBox.Show("Помилка!", "У вас недостатньо для виконання цієї дії", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
