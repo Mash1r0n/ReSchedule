@@ -175,31 +175,25 @@ namespace ReSchedule
         }
     }
 
-    static class ManageLessons
+    struct ManageActiveLessonsBorder
     {
-        static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
+        public Border CurrentLessonBorder { get; private set; }
 
-        static AllInfo CurrentSettings;
+        public bool IsColorized { get; private set; }
 
-        static MainWindow AllElementsInWindow;
-
-        static DispatcherTimer ManageLoop;
-
-        static Border CurrentLessonBorder;
-
-        static DateTime CurrentDate;
-
-        public static void UpgradeSettingsData(AllInfo updSettings)
+        public ManageActiveLessonsBorder(Border border)
         {
-            CurrentSettings = updSettings;
+            CurrentLessonBorder = border;
+            IsColorized = false;
         }
 
-        static void SetNewLessonBorder(Border newBorder)
+        public void SetNewLessonBorder(Border newBorder)
         {
+            EndLessonBorder();
             CurrentLessonBorder = newBorder;
         }
-        //Баг с применением настроек при импорте всех данных
-        static void StartLessonBorder()
+
+        public void StartLessonBorder()
         {
             CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
 
@@ -210,13 +204,45 @@ namespace ReSchedule
                 Duration = TimeSpan.FromSeconds(0.5)
             };
 
-            // Применяем анимацию к свойству Color фона
             CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+            IsColorized = true;
         }
 
-        static void EndLessonBorder()
+        public void EndLessonBorder()
         {
+            CurrentLessonBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5523AF7F"));
 
+            ColorAnimation colorAnimation = new ColorAnimation
+            {
+                From = ((SolidColorBrush)CurrentLessonBorder.Background).Color,
+                To = (Color)ColorConverter.ConvertFromString("#233350"),
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            CurrentLessonBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+            IsColorized =false;
+        }
+    }
+
+    static class ManageLessons
+    {
+        static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
+
+        static AllInfo CurrentSettings;
+
+        static MainWindow AllElementsInWindow;
+
+        static DispatcherTimer ManageLoop;
+
+        static ManageActiveLessonsBorder ManagedBorder;
+
+        static DateTime CurrentDate;
+
+        public static void UpgradeSettingsData(AllInfo updSettings)
+        {
+            CurrentSettings = updSettings;
         }
 
         public static void RemakeContextMenuMouseOver()
@@ -328,6 +354,10 @@ namespace ReSchedule
 
             CurrentNameOfDay = GetDaysNameByNumber(CurrentNumberOfDay);
 
+            AllElementsInWindow = AEIW;
+
+            ManagedBorder = new ManageActiveLessonsBorder(AllElementsInWindow.FindName("BorderLesson1") as Border);
+
             CurrentDate = DateTime.Now;
 
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
@@ -340,8 +370,6 @@ namespace ReSchedule
             {
                 InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
             }
-
-            AllElementsInWindow = AEIW;
 
             ManageLoop = new DispatcherTimer();
 
@@ -428,6 +456,29 @@ namespace ReSchedule
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
+                if (currentTime < InformationAboutLessons[i].LessonEnd)
+                {
+                    if (ManagedBorder.CurrentLessonBorder.Name != $"BorderLesson{i + 1}")
+                    {
+                        ManagedBorder.SetNewLessonBorder(AllElementsInWindow.FindName($"BorderLesson{i + 1}") as Border);
+                    }
+
+                    if (currentTime > InformationAboutLessons[i].LessonBegin)
+                    {
+                        if (!ManagedBorder.IsColorized)
+                        {
+                            ManagedBorder.StartLessonBorder();
+                        }
+                    }
+                    else
+                    {
+                        if (ManagedBorder.IsColorized)
+                        {
+                            ManagedBorder.EndLessonBorder();
+                        }
+                    }
+                }
+
                 if (currentTime < InformationAboutLessons[i].LessonEnd)
                 {
                     if (!AlreadyHaveANextLesson)
@@ -557,24 +608,46 @@ namespace ReSchedule
         //private bool isDragging = false;
         //private Point anchorPoint;
 
+        bool a = false;
+
         AllInfo InformationForAllProgram;
 
         void AAA()
         {
 
-            // Устанавливаем начальный цвет фона
-            BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
-
-            // Создаем новый объект ColorAnimation
-            ColorAnimation colorAnimation = new ColorAnimation
+            if (!a)
             {
-                From = ((SolidColorBrush)BorderLesson1.Background).Color, // начальный цвет
-                To = (Color)ColorConverter.ConvertFromString("#5523AF7F"), // конечный цвет
-                Duration = TimeSpan.FromSeconds(0.5) // продолжительность анимации
-            };
+                // Устанавливаем начальный цвет фона
+                BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
 
-            // Применяем анимацию к свойству Color фона
-            BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+                // Создаем новый объект ColorAnimation
+                ColorAnimation colorAnimation = new ColorAnimation
+                {
+                    From = ((SolidColorBrush)BorderLesson1.Background).Color, // начальный цвет
+                    To = (Color)ColorConverter.ConvertFromString("#5523AF7F"), // конечный цвет
+                    Duration = TimeSpan.FromSeconds(0.5) // продолжительность анимации
+                };
+
+                // Применяем анимацию к свойству Color фона
+                BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+                a = !a;
+            }
+            else
+            {
+                BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5523AF7F"));
+
+                ColorAnimation colorAnimation = new ColorAnimation
+                {
+                    From = ((SolidColorBrush)BorderLesson1.Background).Color,
+                    To = (Color)ColorConverter.ConvertFromString("#233350"),
+                    Duration = TimeSpan.FromSeconds(0.5)
+                };
+
+                BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+                a = !a;
+            }
         }
 
         public MainWindow()
