@@ -464,6 +464,8 @@ namespace ReSchedule
             //}
             bool AlreadyHaveANextLesson = false;
 
+            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой. Исправить баг с исправлением рассписания. При исправлении ставить рассписание исправляемого дня и + оно даже сохраняется. Ещё сделать только 1 запуск программы возможный
+
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
                 if (currentTime < InformationAboutLessons[i].LessonEnd)
@@ -504,12 +506,23 @@ namespace ReSchedule
                         AlreadyHaveANextLesson = true;
                         if (tempContextTempBlockNextLesson != null)
                         {
-                            tempContextTempBlockNextLesson.Text = $"Наступна пара: {InformationAboutLessons[i].NameOfLesson.lesson}";
+                            if (i+1 > InformationAboutLessons.Count)
+                            {
+                                tempContextTempBlockNextLesson.Text = $"Пари закінчились!";
+                            }
+                            else if (currentTime < InformationAboutLessons[i].LessonBegin)
+                            {
+                                tempContextTempBlockNextLesson.Text = $"Наступна пара: {InformationAboutLessons[i].NameOfLesson.lesson}";
+                            }
+                            else
+                            {
+                                tempContextTempBlockNextLesson.Text = $"Наступна пара: {InformationAboutLessons[i+1].NameOfLesson.lesson}";
+                            }
                         }
                     }
                     if (currentTime > InformationAboutLessons[i].LessonBegin)
                     {
-                        TimeDiff = InformationAboutLessons[i].LessonBegin - currentTime;
+                        TimeDiff = InformationAboutLessons[i].LessonEnd - currentTime;
 
                         if (tempContextTempBlock != null)
                         {
@@ -528,13 +541,13 @@ namespace ReSchedule
                         break;
                     }
                 }
-                else
-                {
-                    if (tempContextTempBlock != null)
-                    {
-                        tempContextTempBlock.Text = "Пари закінчились!";
-                    }
-                }
+                //else
+                //{
+                //    if (tempContextTempBlock != null)
+                //    {
+                //        tempContextTempBlock.Text = "Пари закінчились!";
+                //    }
+                //}
             }
             
         }
