@@ -91,6 +91,8 @@ namespace ReSchedule
                 {
                     Title.Text = "Кінець заняття";
 
+                    PlaySound("C:\\Users\\Mashiroon\\source\\repos\\ReSchedule\\Sounds\\EndLesson.mp3");
+
                     if (timeBeforeSomething == "") throw new Exception("Необхіднно навести текст у часове поле");
 
                     BodyText.Visibility = Visibility.Visible;
@@ -104,6 +106,8 @@ namespace ReSchedule
                 {
                     Title.Text = "Початок заняття";
 
+                    PlaySound("C:\\Users\\Mashiroon\\source\\repos\\ReSchedule\\Sounds\\BeginLesson.mp3");
+
                     if (timeBeforeSomething == "") throw new Exception("Необхіднно навести текст у часове поле");
 
                     BodyText.Visibility = Visibility.Visible;
@@ -116,6 +120,9 @@ namespace ReSchedule
                 case EndOfLessons: {
 
                     Title.Text = "Кінець занять";
+
+                    PlaySound("C:\\Users\\Mashiroon\\source\\repos\\ReSchedule\\Sounds\\EndLesson.mp3");
+
                     BodyText.Visibility = Visibility.Visible;
 
                     BodyText.Text = textOfMessage;
@@ -126,6 +133,13 @@ namespace ReSchedule
             }
             Show();
             AnimateMessage();
+        }
+
+        private void PlaySound(string filePath)
+        {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            mediaPlayer.Open(new Uri(filePath, UriKind.RelativeOrAbsolute));
+            mediaPlayer.Play();
         }
 
         void AnimateMessage()
