@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ReSchedule
 {
@@ -20,11 +21,62 @@ namespace ReSchedule
     /// </summary>
     public partial class PushUpMessage : Window
     {
-        public bool IsAnimated { get; private set; }
-        public PushUpMessage()
+
+        MainWindow WindowData;
+
+        DispatcherTimer TimeBeforeEnd;
+
+        int TickIterator = 0;
+        public PushUpMessage(MainWindow windowData)
         {
             InitializeComponent();
-            IsAnimated = false;
+            Opacity = 0;
+            WindowData = windowData;
+            TimeBeforeEnd = new DispatcherTimer();
+            TimeBeforeEnd.Interval = TimeSpan.FromSeconds(5);
+
+            TimeBeforeEnd.Tick += (s, e) => {
+
+                var screenWidth = SystemParameters.WorkArea.Width;
+                var screenHeight = SystemParameters.WorkArea.Height;
+
+                var windowWidth = this.Width;
+                var windowHeight = this.Height;
+
+                var EndHeighCoef = 15;
+
+                var notificationAreaHeight = 50;
+
+                this.Left = screenWidth - windowWidth - 15;
+                this.Top = screenHeight - windowHeight + notificationAreaHeight;
+
+                DoubleAnimation topAnimation = new DoubleAnimation();
+                topAnimation.From = Top;
+                topAnimation.To = screenHeight - windowHeight;
+                topAnimation.Duration = TimeSpan.FromSeconds(1);
+                topAnimation.EasingFunction = new ExponentialEase { EasingMode = EasingMode.EaseOut };
+
+                DoubleAnimation opacityAnimation = new DoubleAnimation();
+                opacityAnimation.From = 1;
+                opacityAnimation.To = 0;
+                opacityAnimation.Duration = TimeSpan.FromSeconds(0.3);
+
+                Storyboard storyboard = new Storyboard();
+                storyboard.Children.Add(topAnimation);
+                storyboard.Children.Add(opacityAnimation);
+
+                Storyboard.SetTarget(topAnimation, this);
+                Storyboard.SetTargetProperty(topAnimation, new PropertyPath(Window.TopProperty));
+                Storyboard.SetTarget(opacityAnimation, this);
+                Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(Window.OpacityProperty));
+
+                storyboard.Completed += (s, e) => {
+                    WindowData.DestroyPushUp(this);
+                };
+
+                storyboard.Begin();
+
+            };
         }
 
         public const int EndOfLesson = 0;
@@ -77,44 +129,35 @@ namespace ReSchedule
 
         void AnimateMessage()
         {
-           
-
-            // Получить размеры рабочей области экрана
             var screenWidth = SystemParameters.WorkArea.Width;
             var screenHeight = SystemParameters.WorkArea.Height;
 
-            // Получить размеры окна
             var windowWidth = this.Width;
             var windowHeight = this.Height;
 
             var EndHeighCoef = 15;
 
-            // Расстояние для всплытия системных уведомлений
-            var notificationAreaHeight = 50; // Замените на реальное значение
+            var notificationAreaHeight = 50;
 
-            // Переместить окно в правый нижний угол
             this.Left = screenWidth - windowWidth - 15;
             this.Top = screenHeight - windowHeight + notificationAreaHeight;
 
-            // Создание анимации для Top свойства
             DoubleAnimation topAnimation = new DoubleAnimation();
             topAnimation.From = this.Top;
             topAnimation.To = screenHeight - windowHeight - EndHeighCoef;
             topAnimation.Duration = TimeSpan.FromSeconds(0.3);
-            topAnimation.EasingFunction = new ExponentialEase { EasingMode = EasingMode.EaseOut }; // функция плавности
+            topAnimation.EasingFunction = new ExponentialEase { EasingMode = EasingMode.EaseOut };
 
             // Создание анимации для Opacity свойства
             DoubleAnimation opacityAnimation = new DoubleAnimation();
-            opacityAnimation.From = 0; // начальная прозрачность
-            opacityAnimation.To = 1; // конечная прозрачность
-            opacityAnimation.Duration = TimeSpan.FromSeconds(0.3); // продолжительность
+            opacityAnimation.From = 0;
+            opacityAnimation.To = 1;
+            opacityAnimation.Duration = TimeSpan.FromSeconds(0.3);
 
-            // Создание Storyboard для управления анимациями
             Storyboard storyboard = new Storyboard();
             storyboard.Children.Add(topAnimation);
             storyboard.Children.Add(opacityAnimation);
 
-            // Привязка анимаций к свойствам окна
             Storyboard.SetTarget(topAnimation, this);
             Storyboard.SetTargetProperty(topAnimation, new PropertyPath(Window.TopProperty));
             Storyboard.SetTarget(opacityAnimation, this);
@@ -123,7 +166,7 @@ namespace ReSchedule
             // Запуск анимаций
             storyboard.Begin();
 
-            IsAnimated = true;
+            TimeBeforeEnd.Start();
         }
     }
 }

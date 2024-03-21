@@ -155,11 +155,11 @@ namespace ReSchedule
 
         public SettingsProperty SetSettings(SettingsProperty SProperty)
         {
-            SettingsProperty originalSettings = Properties; // Сохраняем оригинальные настройки
-            originalSettings.SetAllProperties(SProperty); // Применяем новые настройки
+            SettingsProperty originalSettings = Properties;
+            originalSettings.SetAllProperties(SProperty); 
 
-            Properties = originalSettings; // Обновляем свойства в объекте CurrentSettings
-            return Properties; // Возвращаем обновленные настройки
+            Properties = originalSettings;
+            return Properties;
         }
 
     }
@@ -588,7 +588,7 @@ namespace ReSchedule
                         {
                             if (i+1 >= InformationAboutLessons.Count)
                             {
-                                tempContextTempBlockNextLesson.Text = $"Пари закінчились!";
+                                tempContextTempBlockNextLesson.Text = "Наступної пари немає";
                             }
                             else if (currentTime < InformationAboutLessons[i].LessonBegin)
                             {
@@ -630,13 +630,14 @@ namespace ReSchedule
                         break;
                     }
                 }
-                //else
-                //{
-                //    if (tempContextTempBlock != null)
-                //    {
-                //        tempContextTempBlock.Text = "Пари закінчились!";
-                //    }
-                //}
+                else
+                {
+                    if (tempContextTempBlock != null)
+                    {
+                        tempContextTempBlock.Text = "Пари закінчились!";
+                        tempContextTempBlockNextLesson.Text = "Наступної пари немає";
+                    }
+                }
             }
             
         }
@@ -696,14 +697,6 @@ namespace ReSchedule
             }
         }
 
-        //static Lesson? CheckForNull(string? str)
-        //{
-        //    if (str == "-" || str == null)
-        //    {
-        //        return null;
-        //    }
-        //    return new Lesson(str);
-        //}
         static bool GetWeekMode() //true - Знаменник, false - Чисельник
         {
             DateTime StartDate = new DateTime(2023, 1, 1);
@@ -731,6 +724,8 @@ namespace ReSchedule
         bool a = false;
 
         AllInfo InformationForAllProgram;
+
+        List<PushUpMessage> pushUpMessagesList = new List<PushUpMessage>();
 
         public AllInfo GetInfoForAllProgram()
         {
@@ -875,6 +870,8 @@ namespace ReSchedule
             authorWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             authorWindow.ShowDialog();
         }
+
+        
 
         int TickTime = 0;
 
@@ -1381,17 +1378,6 @@ namespace ReSchedule
             return true;
         }
 
-        
-
-        //void ApplySettings(AllInfo allinfo)
-        //{
-        //    List<LessonPair> TemplateOfCurrentLessons = allinfo.GetDaysLessons(CurrentNumberOfDay);
-
-        //    for (int i = 0; i < TemplateOfCurrentLessons.Count; i++)
-        //    {
-
-        //    }
-        //}
         private void EndOfRegister_Click(object sender, RoutedEventArgs e)
         {
             AllInfo TemplateOfData = new AllInfo();
@@ -1494,9 +1480,19 @@ namespace ReSchedule
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PushUpMessage pushUpMessage = new PushUpMessage();
+            PushUpMessage pushUpMessage = new PushUpMessage(this);
+            pushUpMessagesList.Add(pushUpMessage);
             pushUpMessage.Show();
             pushUpMessage.ShowTheMessage(PushUpMessage.EndOfLesson, "AAAAAAAAAA", "BBBBBBBBBBBBB");
+        }
+
+        public void DestroyPushUp(PushUpMessage pushUpMessage)
+        {
+            if (pushUpMessagesList.Contains(pushUpMessage))
+            {
+                pushUpMessage.Close();
+                pushUpMessagesList.Remove(pushUpMessage);
+            }
         }
 
         private void CloseApp_Click(object sender, RoutedEventArgs e)
@@ -1506,6 +1502,7 @@ namespace ReSchedule
 
         private void ShowApp_Click(object sender, RoutedEventArgs e)
         {
+            Focus();
             Show();
         }
 
@@ -1588,7 +1585,6 @@ namespace ReSchedule
 
                 foreach (string file in files)
                 {
-                    MessageBox.Show(file, "Заголовок", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (file.Substring(file.Length - 4) == ".drs")
                     {
                         if (ReadInfoFromFile(out InformationForAllProgram, file))

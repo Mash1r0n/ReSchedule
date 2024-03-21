@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReSchedule"
         mc:Ignorable="d"
-        Title="ChangeChoosedLesson"  WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="Transparent" AllowsTransparency="True">
+        Title="Змінити розклад занять"  WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" Background="Transparent" AllowsTransparency="True" ShowInTaskbar="False">
     <Grid>
         <Border Background="#ADAEAF" Opacity="0.19"/>
         <Grid Height="359" Width="630" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:ReSchedule"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" WindowStartupLocation="CenterScreen" Background="#041723" Closing="Window_Closing">
+        Title="Головне вікно" WindowStyle="None" ResizeMode="NoResize" Width="1028" Height="600" WindowStartupLocation="CenterScreen" Background="#041723" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="21"></RowDefinition>
