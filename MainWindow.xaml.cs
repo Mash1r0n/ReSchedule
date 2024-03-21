@@ -544,7 +544,7 @@ namespace ReSchedule
             //}
             bool AlreadyHaveANextLesson = false;
 
-            //TODO: Доделать тот дропс на регистрации и сделать уведомления.
+            //TODO: сделать уведомления.
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
@@ -586,7 +586,7 @@ namespace ReSchedule
                         AlreadyHaveANextLesson = true;
                         if (tempContextTempBlockNextLesson != null)
                         {
-                            if (i+1 > InformationAboutLessons.Count)
+                            if (i+1 >= InformationAboutLessons.Count)
                             {
                                 tempContextTempBlockNextLesson.Text = $"Пари закінчились!";
                             }
@@ -602,6 +602,15 @@ namespace ReSchedule
                     }
                     if (currentTime > InformationAboutLessons[i].LessonBegin)
                     {
+                        if (InformationAboutLessons[i].NameOfLesson.lesson == "-")
+                        {
+                            if (tempContextTempBlock != null)
+                            {
+                                tempContextTempBlock.Text = "До закінчення (хв): -";
+                            }
+                            break;
+                        }
+
                         TimeDiff = InformationAboutLessons[i].LessonEnd - currentTime;
 
                         if (tempContextTempBlock != null)
@@ -1485,7 +1494,9 @@ namespace ReSchedule
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AAA();
+            PushUpMessage pushUpMessage = new PushUpMessage();
+            pushUpMessage.Show();
+            pushUpMessage.ShowTheMessage(PushUpMessage.EndOfLesson, "AAAAAAAAAA", "BBBBBBBBBBBBB");
         }
 
         private void CloseApp_Click(object sender, RoutedEventArgs e)
@@ -1598,6 +1609,60 @@ namespace ReSchedule
                     break;
                 }
             }
+        }
+
+        private void DropRectangle_DragEnter(object sender, DragEventArgs e)
+        {
+            DoubleAnimation opacityAnimation = new DoubleAnimation();
+            opacityAnimation.From = 1.0;
+            opacityAnimation.To = 0.0;
+            opacityAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.19));
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(opacityAnimation);
+
+            Storyboard.SetTarget(opacityAnimation, DropStackPanel);
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(OpacityProperty));
+
+            storyboard.Begin();
+
+            DropRectangle.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#041723"));
+
+            ColorAnimation colorAnimation = new ColorAnimation
+            {
+                From = ((SolidColorBrush)DropRectangle.Fill).Color,
+                To = (Color)ColorConverter.ConvertFromString("#30C4C4C4"),
+                Duration = TimeSpan.FromSeconds(0.19)
+            };
+
+            DropRectangle.Fill.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+        }
+
+        private void DropRectangle_DragLeave(object sender, DragEventArgs e)
+        {
+            DoubleAnimation opacityAnimation = new DoubleAnimation();
+            opacityAnimation.From = 0.0;
+            opacityAnimation.To = 1.0;
+            opacityAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.19));
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(opacityAnimation);
+
+            Storyboard.SetTarget(opacityAnimation, DropStackPanel);
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(OpacityProperty));
+
+            storyboard.Begin();
+
+            DropRectangle.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#30C4C4C4"));
+
+            ColorAnimation colorAnimation = new ColorAnimation
+            {
+                From = ((SolidColorBrush)DropRectangle.Fill).Color,
+                To = (Color)ColorConverter.ConvertFromString("#041723"),
+                Duration = TimeSpan.FromSeconds(0.19)
+            };
+
+            DropRectangle.Fill.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
         }
     }
 }

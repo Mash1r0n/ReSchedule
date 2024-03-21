@@ -1,0 +1,42 @@
+﻿<Window x:Class="ReSchedule.PushUpMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReSchedule"
+        mc:Ignorable="d"
+        Title="PushUpMessage" Height="74" Width="446" WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+    <Border Background="#041723" CornerRadius="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="19"/>
+                <RowDefinition/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\TransparentIcon.png" Height="45" Width="45"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0"/>
+            <TextBlock x:Name="Title" Grid.Row="1" Grid.Column="1" Foreground="#CED6E3" TextAlignment="Left" FontSize="16" FontFamily="Roboto">
+                <Run FontWeight="Bold">
+                    Заголовок повідомлення
+                </Run>
+            </TextBlock>
+            <StackPanel x:Name="StackInformation" Grid.Row="2" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="TimeText" Width="369" Height="16" Visibility="Collapsed" TextTrimming="CharacterEllipsis" Margin="0,5,0,6" FontFamily="Roboto" Foreground="#CED6E3" FontSize="14" TextAlignment="Left">
+                    <Run FontWeight="Regular">
+                        Перерва продовжиться 99 хв
+                    </Run>
+                </TextBlock>
+
+                <TextBlock x:Name="BodyText" Width="369" Height="16" Visibility="Collapsed" TextTrimming="CharacterEllipsis" FontFamily="Roboto" Foreground="#CED6E3" FontSize="14" TextAlignment="Left">
+                    <Run FontWeight="Regular">
+                        Наступне заняття: українська мова за професійним спрямуванням
+                    </Run>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
