@@ -475,9 +475,10 @@ namespace ReSchedule
 
             RemakeContextMenuMouseOver();
 
+            SyncMessages();
         }
 
-        void SyncMessages()
+        static void SyncMessages()
         {
             SyncForMessages.Interval = TimeSpan.FromSeconds(1);
 
