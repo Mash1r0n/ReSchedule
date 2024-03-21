@@ -124,6 +124,7 @@ namespace ReSchedule
 
                 default: { throw new Exception("Недопустимий варіант"); }
             }
+            Show();
             AnimateMessage();
         }
 
@@ -148,7 +149,6 @@ namespace ReSchedule
             topAnimation.Duration = TimeSpan.FromSeconds(0.3);
             topAnimation.EasingFunction = new ExponentialEase { EasingMode = EasingMode.EaseOut };
 
-            // Создание анимации для Opacity свойства
             DoubleAnimation opacityAnimation = new DoubleAnimation();
             opacityAnimation.From = 0;
             opacityAnimation.To = 1;
@@ -163,7 +163,6 @@ namespace ReSchedule
             Storyboard.SetTarget(opacityAnimation, this);
             Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(Window.OpacityProperty));
 
-            // Запуск анимаций
             storyboard.Begin();
 
             TimeBeforeEnd.Start();

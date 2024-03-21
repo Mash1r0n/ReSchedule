@@ -326,6 +326,10 @@ namespace ReSchedule
 
         static DispatcherTimer ManageLoop;
 
+        static DispatcherTimer MessageForLesson;
+
+        static DispatcherTimer SyncForMessages;
+
         static ManageActiveLessonsBorder ManagedBorder;
 
         static DateTime CurrentDate;
@@ -463,9 +467,101 @@ namespace ReSchedule
 
             ManageLoop = new DispatcherTimer();
 
+            MessageForLesson = new DispatcherTimer();
+
+            SyncForMessages = new DispatcherTimer();
+
             SetSettings();
 
             RemakeContextMenuMouseOver();
+
+        }
+
+        void SyncMessages()
+        {
+            SyncForMessages.Interval = TimeSpan.FromSeconds(1);
+
+            SyncForMessages.Tick += (s, e) => {
+                TimeSpan currentTime = DateTime.Now.TimeOfDay;
+
+                if (MessageForLesson.IsEnabled)
+                {
+                    SyncForMessages.Stop();
+                }
+
+                else if (currentTime.Seconds == 0)
+                {
+                    StartListenForNotification();
+                    SyncForMessages.Stop();
+                }
+            };
+
+            SyncForMessages.Start();
+        }
+
+        static bool CheckForAnothersLessons(int BeginNumber)
+        {
+            for (int i = BeginNumber+1; i < InformationAboutLessons.Count; i++)
+            {
+                if (InformationAboutLessons[i].NameOfLesson.lesson != "-")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static void StartListenForNotification()
+        {
+            TimeSpan TimeDiff = TimeSpan.FromMinutes(3);
+
+            MessageForLesson.Interval = TimeSpan.FromSeconds(1);
+
+            MessageForLesson.Tick += (s, e) =>
+            {
+                TimeSpan currentTime = DateTime.Now.TimeOfDay;
+
+                currentTime = new TimeSpan(currentTime.Hours, currentTime.Minutes, 0);
+                for (int i = 0; i < InformationAboutLessons.Count; i++)
+                {
+                    
+                    if (currentTime + TimeDiff == InformationAboutLessons[i].LessonBegin && InformationAboutLessons[i].NameOfLesson.lesson != "-")
+                    {
+                        PushUpMessage pushUpMessage = new PushUpMessage(AllElementsInWindow);
+                        AllElementsInWindow.AddMessageToList(pushUpMessage);
+                        pushUpMessage.ShowTheMessage(PushUpMessage.BeginOfLesson, $"Почнеться заняття: {InformationAboutLessons[i].NameOfLesson.lesson}", $"Через {TimeDiff.ToString("mm")} хв");
+                        break;
+                    }
+                    else if (currentTime == InformationAboutLessons[i].LessonEnd)
+                    {
+                        PushUpMessage pushUpMessage = new PushUpMessage(AllElementsInWindow);
+                        AllElementsInWindow.AddMessageToList(pushUpMessage);
+                        if (i + 1 > InformationAboutLessons.Count)
+                        {
+                            pushUpMessage.ShowTheMessage(PushUpMessage.EndOfLessons, $"Більше занять на сьогодні немає");
+                            break;
+                        }
+                        else if (!CheckForAnothersLessons(i) && currentTime < InformationAboutLessons[InformationAboutLessons.Count - 1].LessonEnd)
+                        {
+                            pushUpMessage.ShowTheMessage(PushUpMessage.EndOfLessons, $"Більше занять на сьогодні немає");
+                            break;
+                        }
+                        else if (InformationAboutLessons[i].NameOfLesson.lesson != "-")
+                        {
+                            pushUpMessage.ShowTheMessage(PushUpMessage.EndOfLesson, $"Наступне заняття: {InformationAboutLessons[i+1].NameOfLesson.lesson}", $"Через {(InformationAboutLessons[i+1].LessonBegin - currentTime).ToString("mm")} хв");
+                            break;
+                        }
+                        
+                    }
+                }
+
+                if (MessageForLesson.Interval == TimeSpan.FromSeconds(1))
+                {
+                    MessageForLesson.Interval = TimeSpan.FromMinutes(1);
+                }
+            };
+
+            MessageForLesson.Start();
         }
 
         static public void SetNewLessonInfo(AllLessons AllCurrentInfo)
@@ -641,6 +737,7 @@ namespace ReSchedule
             }
             
         }
+
         static public void SetSettings()
         {
             AllElementsInWindow.TodaysDay.Text = CurrentNameOfDay;
@@ -725,7 +822,12 @@ namespace ReSchedule
 
         AllInfo InformationForAllProgram;
 
-        List<PushUpMessage> pushUpMessagesList = new List<PushUpMessage>();
+        List<PushUpMessage> pushUpMessagesList;
+
+        public void AddMessageToList(PushUpMessage message)
+        {
+            pushUpMessagesList.Add(message);
+        }
 
         public AllInfo GetInfoForAllProgram()
         {
@@ -808,6 +910,8 @@ namespace ReSchedule
                 MessageBox.Show("Приложение уже запущено");
                 Application.Current.Shutdown();
             }
+
+            pushUpMessagesList = new List<PushUpMessage>();
 
             const int MinutesForRegistration = 7;
             const string TextAfterMinutesStages = "хвилин";
@@ -1352,8 +1456,6 @@ namespace ReSchedule
                 write.WriteLineAsync(jsonString);
             }
         }
-
-        
 
         public bool ReadInfoFromFile(out AllInfo obj)
         {

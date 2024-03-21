@@ -13,19 +13,19 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5"/>
+                <RowDefinition Height="8"/>
                 <RowDefinition Height="19"/>
                 <RowDefinition/>
-                <RowDefinition Height="5"/>
+                <RowDefinition Height="8"/>
             </Grid.RowDefinitions>
             <Image Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\TransparentIcon.png" Height="45" Width="45"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="0"/>
-            <TextBlock x:Name="Title" Grid.Row="1" Grid.Column="1" Foreground="#CED6E3" TextAlignment="Left" FontSize="16" FontFamily="Roboto">
-                <Run FontWeight="Bold">
+            <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#CED6E3" TextAlignment="Left" FontSize="16"  FontFamily="Roboto">
+                <Run x:Name="Title" FontWeight="Bold">
                     Заголовок повідомлення
                 </Run>
             </TextBlock>
             <StackPanel x:Name="StackInformation" Grid.Row="2" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock x:Name="TimeText" Width="369" Height="16" Visibility="Collapsed" TextTrimming="CharacterEllipsis" Margin="0,5,0,6" FontFamily="Roboto" Foreground="#CED6E3" FontSize="14" TextAlignment="Left">
+                <TextBlock x:Name="TimeText" Width="369" Height="16" Visibility="Collapsed" TextTrimming="CharacterEllipsis" Margin="0,3,0,3" FontFamily="Roboto" Foreground="#CED6E3" FontSize="14" TextAlignment="Left">
                     <Run FontWeight="Regular">
                         Перерва продовжиться 99 хв
                     </Run>
