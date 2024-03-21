@@ -88,31 +88,31 @@ namespace ReSchedule
             {
                 case "ChangeMonday": 
                 {
-                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Monday);  
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Monday, WindowData, 1);  
                 }
                 break;
 
                 case "ChangeThuesday": 
                 {
-                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thuesday);
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thuesday, WindowData, 1);
                 }
                 break;
 
                 case "ChangeWednesday": 
                 {
-                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Wednesday);
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Wednesday, WindowData, 3);
                 }
                 break;
 
                 case "ChangeThursday": 
                 {
-                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thursday);
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Thursday, WindowData, 4);
                 }
                 break;
 
                 case "ChangeFriday": 
                 {
-                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Friday);
+                    changeChoosedLesson = new ChangeChoosedLesson(CurrentSettings, CurrentSettings.Friday, WindowData, 5);
                 }
                 break;
 
@@ -179,6 +179,7 @@ namespace ReSchedule
 
         public bool ReadInfoFromFile(ref AllInfo obj, string filePath)
         {
+            obj = new AllInfo();
 
             if (!File.Exists(filePath))
             {
@@ -201,7 +202,7 @@ namespace ReSchedule
             return true;
         }
 
-        public bool ReadLessonsFromFile(AllInfo obj, string filePath)
+        public bool ReadLessonsFromFile(ref AllInfo obj, string filePath)
         {
             AllLessons tempLessons;
 
@@ -231,9 +232,17 @@ namespace ReSchedule
             return true;
         }
 
-        void ExportImportButtonClose()
+        void ExportImportButtonClose(bool LessonOrAll) //true - Lesson, false - all
         {
-            ManageLessons.UpgradeSettingsData(CurrentSettings);
+            if (LessonOrAll)
+            {
+                WindowData.SetNewLessonsInformation(CurrentSettings);
+            }
+            else
+            {
+                WindowData.SetNewInfolmationAboutProgram(CurrentSettings);
+            }
+            ManageLessons.StartManage(WindowData.GetInfoForAllProgram(), WindowData);
             ManageLessons.RemakeContextMenuMouseOver();
             Close();
         }
@@ -250,8 +259,8 @@ namespace ReSchedule
             if (openResult == true)
             {
                 AnyFilePath = openFileDialog.FileName;
-                ReadLessonsFromFile(CurrentSettings, AnyFilePath);
-                ExportImportButtonClose();
+                ReadLessonsFromFile(ref CurrentSettings, AnyFilePath);
+                ExportImportButtonClose(true);
             }
         }
 
@@ -268,7 +277,7 @@ namespace ReSchedule
             {
                 AnyFilePath = openFileDialog.FileName;
                 ReadInfoFromFile(ref CurrentSettings, AnyFilePath);
-                ExportImportButtonClose();
+                ExportImportButtonClose(false);
             }
         }
 
@@ -284,7 +293,7 @@ namespace ReSchedule
             {
                 AnyFilePath = saveFileDialog.FileName;
                 WriteLessonsInFile(CurrentSettings, AnyFilePath);
-                ExportImportButtonClose();
+                ExportImportButtonClose(true);
             }
         }
 
@@ -301,7 +310,7 @@ namespace ReSchedule
             {
                 AnyFilePath = saveFileDialog.FileName;
                 WriteInfoInFile(CurrentSettings, AnyFilePath);
-                ExportImportButtonClose();
+                ExportImportButtonClose(false);
             }
         }
 

@@ -268,7 +268,7 @@ namespace ReSchedule
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Height = 30,
-                Padding = new Thickness(0, 6, 0, 0)
+                Padding = new Thickness(0, 8, 0, 0)
             };
 
             Run run = new Run
@@ -464,7 +464,7 @@ namespace ReSchedule
             //}
             bool AlreadyHaveANextLesson = false;
 
-            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой. Исправить баг с исправлением рассписания. При исправлении ставить рассписание исправляемого дня и + оно даже сохраняется. Ещё сделать только 1 запуск программы возможный
+            //TODO: Доделать тот дропс на регистрации и сделать уведомления. Реализовать запуск с системой. Ещё сделать только 1 запуск программы возможный
 
             for (int i = 0; i < InformationAboutLessons.Count; i++)
             {
@@ -642,6 +642,25 @@ namespace ReSchedule
         bool a = false;
 
         AllInfo InformationForAllProgram;
+
+        public AllInfo GetInfoForAllProgram()
+        {
+            return InformationForAllProgram;
+        }
+
+        public void SetNewInfolmationAboutProgram(AllInfo newInfo)
+        {
+            InformationForAllProgram.SetNewData(newInfo);
+        }
+
+        public void SetNewLessonsInformation(AllLessons newLessons)
+        {
+            InformationForAllProgram.SetList(1, newLessons.Monday);
+            InformationForAllProgram.SetList(2, newLessons.Thuesday);
+            InformationForAllProgram.SetList(3, newLessons.Wednesday);
+            InformationForAllProgram.SetList(4, newLessons.Thursday);
+            InformationForAllProgram.SetList(5, newLessons.Friday);
+        }
 
         void AAA()
         {

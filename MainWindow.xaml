@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <tb:TaskbarIcon IconSource="Images/icon.ico" ToolTipText="hello world" PopupActivation="RightClick">
+        <tb:TaskbarIcon IconSource="Images/icon.ico" ToolTipText="hello world" TrayMouseDoubleClick="ShowApp_Click" PopupActivation="RightClick">
             <tb:TaskbarIcon.TrayPopup>
                 <Border Background="#041723" CornerRadius="15" Width="160">
                     <StackPanel Orientation="Vertical">

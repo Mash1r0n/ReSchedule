@@ -24,16 +24,19 @@ namespace ReSchedule
         AllLessons LessonsData;
         int NumOfWeek;
 
+        MainWindow WindowData;
+
         DispatcherTimer CheckForFill;
-        public ChangeChoosedLesson(AllLessons lessonsData,  List<LessonPair> lessonsPairData)
+        public ChangeChoosedLesson(AllLessons lessonsData,  List<LessonPair> lessonsPairData, MainWindow windowData, int NumOfDay)
         {
             InitializeComponent();
+            WindowData = windowData;
 
             LessonsPairData = lessonsPairData;
 
             LessonsData = lessonsData;
 
-            NumOfWeek = ManageLessons.GetWeekNumber();
+            NumOfWeek = NumOfDay;
 
             ChoosingDayFor.Text = "Зміна роскладу за день: " + ManageLessons.GetDaysNameByNumber(NumOfWeek);
 
@@ -52,6 +55,7 @@ namespace ReSchedule
                 }
             };
             CheckForFill.Start();
+            WindowData = windowData;
         }
 
         bool IsAllTextBlockAreNotEmpty()
@@ -99,7 +103,9 @@ namespace ReSchedule
 
             LessonsData.SetList(NumOfWeek, tempListLessonPair);
 
-            ManageLessons.SetNewLessonInfo(LessonsData);
+            WindowData.SetNewLessonsInformation(LessonsData);
+
+            ManageLessons.StartManage(WindowData.GetInfoForAllProgram(), WindowData);
         }
 
         private void ApplyChanges_Click(object sender, RoutedEventArgs e)
