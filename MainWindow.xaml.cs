@@ -946,6 +946,8 @@ namespace ReSchedule
             StageLine.Children.Add(FormPanel.ReturnCompletedPanel());
 
             TextOnStartRegistration.Text = $"Перед тим, як почати користуватись програмою, ви маєте пройти через {FormPanel.ReturnCountOfStages()} {TextForStages}, що займуть у вас приблизно {MinutesForRegistration} {TextAfterMinutesStages}";
+
+            Focus();
         }
 
         private void CloseWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -1605,8 +1607,9 @@ namespace ReSchedule
 
         private void ShowApp_Click(object sender, RoutedEventArgs e)
         {
-            Focus();
+
             Show();
+            Focus();
         }
 
         void EndRegistrationAnimation()
