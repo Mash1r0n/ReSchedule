@@ -25,7 +25,6 @@ namespace ReSchedule
             this.lesson = lesson;
         }
     }
-
     public struct LessonPair
     {
         [JsonProperty]
