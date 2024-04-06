@@ -16,7 +16,6 @@ namespace ReSchedule
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-
     public struct Lesson
     {
         [JsonProperty]
