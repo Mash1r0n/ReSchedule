@@ -15,7 +15,7 @@
                             <TextBlock Text="Чисельник" Margin="39,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="30"/>
                         </StackPanel>
                     </Grid>
-                    <ControlTemplate.Triggers>
+                    <ControlTemplate.Triggers >
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="BackgroundOfRB" Property="Background" Value="#6C798F" />
                         </Trigger>

@@ -68,7 +68,7 @@ namespace ReSchedule
                 case 3: return Wednesday;
                 case 4: return Thursday;
                 case 5: return Friday;
-                default: { throw new Exception("Для такого дня немає занять"); }
+                default: { throw new Exception("Для такого дня немає занять"); }//TODO: Предусмотреть выходные дни
             }
         }
 

@@ -11,13 +11,13 @@
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ManageStageButtons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseRegistrationMethodButtons.xaml"/>
                 <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\RegistrationElementsStyle\ChooseWeekMode.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SideMenuOnHomePage.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\XButtonOnMenu.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\AllDaysForWatchLessons.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ChangeLessonButtons.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ChangeLessonsFormButtons.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ImportExportButtons.xaml"/>
-                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ContextMenuButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\MainMenuWindowStyle\SideMenuOnHomePage.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\MainMenuWindowStyle\XButtonOnMenu.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\WatchAllLessonsStyle\AllDaysForWatchLessons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SettingsStyle\ChangeLessonButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SettingsStyle\ChangeLessonsFormButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\SettingsStyle\ImportExportButtons.xaml"/>
+                <ResourceDictionary Source="C:\Users\Mashiroon\source\repos\ReSchedule\ContextMenuStyle\ContextMenuButtons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
