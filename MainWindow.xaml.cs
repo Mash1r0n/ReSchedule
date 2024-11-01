@@ -25,6 +25,7 @@ namespace ReSchedule
             this.lesson = lesson;
         }
     }
+
     public struct LessonPair
     {
         [JsonProperty]
@@ -44,6 +45,7 @@ namespace ReSchedule
             LessonEnd = LE;
         }
     }
+
     public class AllLessons()
     {
         [JsonProperty]
@@ -57,6 +59,8 @@ namespace ReSchedule
         [JsonProperty]
         public List<LessonPair> Friday { get; private set; } = new List<LessonPair>();
 
+        public List<LessonPair> Weekend { get; private set; } = new List<LessonPair>();
+
         public List<LessonPair> GetDaysLessons(int NumberOfDay)
         {
             switch (NumberOfDay)
@@ -66,6 +70,8 @@ namespace ReSchedule
                 case 3: return Wednesday;
                 case 4: return Thursday;
                 case 5: return Friday;
+                case 6: return Weekend;
+                case 7: return Weekend;
                 default: { throw new Exception("Для такого дня немає занять"); }//TODO: Предусмотреть выходные дни
             }
         }
@@ -313,7 +319,6 @@ namespace ReSchedule
         }
     }
 
-
     static class ManageLessons
     {
         static List<LessonInfo> InformationAboutLessons = new List<LessonInfo>();
@@ -456,13 +461,6 @@ namespace ReSchedule
 
             CurrentSettings = AllCurrentInfo;
 
-            InformationAboutLessons = new List<LessonInfo>();
-
-            for (int i = 0; i < 6; i++)
-            {
-                InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
-            }
-
             ManageLoop = new DispatcherTimer();
 
             MessageForLesson = new DispatcherTimer();
@@ -474,6 +472,35 @@ namespace ReSchedule
             RemakeContextMenuMouseOver();
 
             SyncMessages();
+
+            if (lesson.Count == 0)
+            {
+                AEIW.BorderLesson1.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson2.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson3.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson4.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson5.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson6.Visibility = Visibility.Hidden;
+                AEIW.WeekendPanel.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
+                AEIW.BorderLesson1.Visibility = Visibility.Visible;
+                AEIW.BorderLesson2.Visibility = Visibility.Visible;
+                AEIW.BorderLesson3.Visibility = Visibility.Visible;
+                AEIW.BorderLesson4.Visibility = Visibility.Visible;
+                AEIW.BorderLesson5.Visibility = Visibility.Visible;
+                AEIW.BorderLesson6.Visibility = Visibility.Visible;
+                AEIW.WeekendPanel.Visibility = Visibility.Hidden;
+            }
+
+            InformationAboutLessons = new List<LessonInfo>();
+
+            for (int i = 0; i < 6; i++)
+            {
+                InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
+            }
         }
 
         static void SyncMessages()
@@ -727,7 +754,7 @@ namespace ReSchedule
                 }
                 else
                 {
-                    if (tempContextTempBlock != null)
+                    if (tempContextTempBlock != null && tempContextTempBlockNextLesson != null)
                     {
                         tempContextTempBlock.Text = "Пари закінчились!";
                         tempContextTempBlockNextLesson.Text = "Наступної пари немає";
@@ -814,14 +841,21 @@ namespace ReSchedule
 
     public partial class MainWindow : Window
     {
-        //private bool isDragging = false;
-        //private Point anchorPoint;
-
-        bool a = false;
-
         AllInfo InformationForAllProgram;
 
         List<PushUpMessage> pushUpMessagesList;
+
+        int TickDropTime = 0;
+
+        private const string MutexName = "Global\\ReSchedule359";
+        private bool _mutexCreated;
+        private Mutex _mutex;
+
+        int TickTime = 0;
+
+        int CurrentRegistrationPage = 0;
+        DispatcherTimer timer;
+        DispatcherTimer FillTImer = new DispatcherTimer();
 
         public void AddMessageToList(PushUpMessage message)
         {
@@ -847,52 +881,9 @@ namespace ReSchedule
             InformationForAllProgram.SetList(5, newLessons.Friday);
         }
 
-        void AAA()
-        {
-
-            if (!a)
-            {
-                // Устанавливаем начальный цвет фона
-                BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#233350"));
-
-                // Создаем новый объект ColorAnimation
-                ColorAnimation colorAnimation = new ColorAnimation
-                {
-                    From = ((SolidColorBrush)BorderLesson1.Background).Color, // начальный цвет
-                    To = (Color)ColorConverter.ConvertFromString("#5523AF7F"), // конечный цвет
-                    Duration = TimeSpan.FromSeconds(0.5) // продолжительность анимации
-                };
-
-                // Применяем анимацию к свойству Color фона
-                BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-
-                a = !a;
-            }
-            else
-            {
-                BorderLesson1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5523AF7F"));
-
-                ColorAnimation colorAnimation = new ColorAnimation
-                {
-                    From = ((SolidColorBrush)BorderLesson1.Background).Color,
-                    To = (Color)ColorConverter.ConvertFromString("#233350"),
-                    Duration = TimeSpan.FromSeconds(0.5)
-                };
-
-                BorderLesson1.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-
-                a = !a;
-            }
-        }
-
-        private const string MutexName = "Global\\ReSchedule359";
-        private bool _mutexCreated;
-        private Mutex _mutex;
-
         public MainWindow()
         {
             InitializeComponent();
-
             _mutex = new Mutex(true, MutexName, out _mutexCreated);
 
             if (!_mutexCreated)
@@ -906,7 +897,7 @@ namespace ReSchedule
             Mutex mutex = new Mutex(true, "{8F6F0AC5-B9A1-55fd-A8CF-73F04E6BDE8F}", out isNewInstance);
             if (!isNewInstance)
             {
-                MessageBox.Show("Приложение уже запущено");
+                MessageBox.Show("Програма вже запущена!");
                 Application.Current.Shutdown();
             }
 
@@ -976,14 +967,6 @@ namespace ReSchedule
             authorWindow.ShowDialog();
         }
 
-        
-
-        int TickTime = 0;
-
-        //За інформацією про поточні сторінки я зможну гночку керувати кнопками скроллингу сторінки
-        int CurrentRegistrationPage = 0;
-        DispatcherTimer timer;
-
         void ScrollRegistration(bool TickSide) //false - праворуч true - ліворуч
         {
             timer = new DispatcherTimer();
@@ -1035,7 +1018,7 @@ namespace ReSchedule
 
             timer.Start();  
         }
-        DispatcherTimer FillTImer = new DispatcherTimer();
+        
         void ManageNextPrev(bool ScrollSide) //false - праворуч true - ліворуч
         {
             if (!ScrollSide)
@@ -1133,8 +1116,6 @@ namespace ReSchedule
         {
             ManageNextPrev(true);
         }
-
-        int TickDropTime = 0;
 
         private void BackFromDrop_Click(object sender, RoutedEventArgs e)
         {
@@ -1605,7 +1586,6 @@ namespace ReSchedule
 
         private void ShowApp_Click(object sender, RoutedEventArgs e)
         {
-
             Show();
             Focus();
         }

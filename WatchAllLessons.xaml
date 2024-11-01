@@ -134,7 +134,7 @@
 
                             <TextBlock x:Name="LessonDown1" Width="257" TextAlignment="Center" Foreground="#CED6E3" FontFamily="Nunito" FontSize="16" Margin="0,30,0,0" TextTrimming="CharacterEllipsis">
                                 <Run FontWeight="Light">
-                                    NAMфівфівфівфівфівфівфівфівфівфівфівіфвфів
+                                    NAMEEE1
                                 </Run>
                             </TextBlock>
                         </StackPanel>

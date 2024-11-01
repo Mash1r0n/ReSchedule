@@ -67,7 +67,6 @@ namespace ReSchedule
             CurrentSettings.Properties.SetAllProperties(CurrentSettings.SetSettings(tempSettings));
         }
 
-
         private void XButton_Click(object sender, RoutedEventArgs e)
         {
             SetSettings();
@@ -158,7 +157,7 @@ namespace ReSchedule
             }
         }
 
-        public void WriteInfoInFile(AllInfo allinfo, string filePath)
+        private void WriteInfoInFile(AllInfo allinfo, string filePath)
         {
             string jsonString = JsonConvert.SerializeObject(allinfo);
 
@@ -168,7 +167,7 @@ namespace ReSchedule
             }
         }
 
-        public void WriteLessonsInFile(AllLessons alllessons, string filePath)
+        private void WriteLessonsInFile(AllLessons alllessons, string filePath)
         {
             string jsonString = JsonConvert.SerializeObject(alllessons);
 
@@ -178,7 +177,7 @@ namespace ReSchedule
             }
         }
 
-        public bool ReadInfoFromFile(ref AllInfo obj, string filePath)
+        private bool ReadInfoFromFile(ref AllInfo obj, string filePath)
         {
             obj = new AllInfo();
 
@@ -203,7 +202,7 @@ namespace ReSchedule
             return true;
         }
 
-        public bool ReadLessonsFromFile(ref AllInfo obj, string filePath)
+        private bool ReadLessonsFromFile(ref AllInfo obj, string filePath)
         {
             AllLessons tempLessons;
 

@@ -20,7 +20,6 @@ namespace ReSchedule
     public partial class WatchAllLessons : Window
     {
         AllLessons LessonsData;
-        MainWindow AllWindowData;
         public WatchAllLessons(int NumberOfDay, AllLessons AllCurrentLessons, MainWindow windowData)
         {
             InitializeComponent();
@@ -79,11 +78,9 @@ namespace ReSchedule
             }
 
             LessonsData = AllCurrentLessons;
-
-            AllWindowData = windowData;
         }
 
-        public void FormLesson(List<LessonPair> ListOfLessons)
+        private void FormLesson(List<LessonPair> ListOfLessons)
         {
             var LessonsData = ListOfLessons;
 

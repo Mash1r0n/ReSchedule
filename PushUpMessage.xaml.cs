@@ -26,7 +26,6 @@ namespace ReSchedule
 
         DispatcherTimer TimeBeforeEnd;
 
-        int TickIterator = 0;
         public PushUpMessage(MainWindow windowData)
         {
             InitializeComponent();

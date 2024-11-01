@@ -109,7 +109,7 @@
                 </Grid>
             </Grid>
 
-            <Border Grid.Row="2" Grid.Column="3" Background="#0D1D33" CornerRadius="30">
+            <Border x:Name="LessonsHolder" Grid.Row="2" Grid.Column="3" Background="#0D1D33" CornerRadius="30">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="14"/>
@@ -128,6 +128,18 @@
                         <ColumnDefinition Width="14"/>
                     </Grid.ColumnDefinitions>
 
+                    <StackPanel x:Name="WeekendPanel" Grid.Row="0" Grid.Column="3" Grid.RowSpan="5" Orientation="Vertical" VerticalAlignment="Center" Visibility="Hidden">
+                        <Image Width="64" Height="64" Grid.Column="1" VerticalAlignment="Top" Grid.Row="1"  Margin="0,3,0,0" Source="C:\Users\Mashiroon\source\repos\ReSchedule\Images\Weekend.png"/>
+                        <TextBlock 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="#CED6E3"
+                           FontSize="18"
+                           FontFamily="Nunito">
+                           На сьогодні занять немає
+                        </TextBlock>
+                    </StackPanel>
+                    
                     <Button Grid.Row="1" Grid.Column="2" Click="Button_Click" Visibility="Hidden"/>
 
                     <Border x:Name="BorderLesson0" Grid.Row="1" Grid.Column="6" Visibility="Hidden"/>
