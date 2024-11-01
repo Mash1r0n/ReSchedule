@@ -59,7 +59,11 @@ namespace ReSchedule
         [JsonProperty]
         public List<LessonPair> Friday { get; private set; } = new List<LessonPair>();
 
-        public List<LessonPair> Weekend { get; private set; } = new List<LessonPair>();
+        [JsonIgnore]
+        public List<LessonPair> Saturday { get; private set; } = new List<LessonPair>();
+
+        [JsonIgnore]
+        public List<LessonPair> Sunday { get; private set; } = new List<LessonPair>();
 
         public List<LessonPair> GetDaysLessons(int NumberOfDay)
         {
@@ -70,9 +74,9 @@ namespace ReSchedule
                 case 3: return Wednesday;
                 case 4: return Thursday;
                 case 5: return Friday;
-                case 6: return Weekend;
-                case 7: return Weekend;
-                default: { throw new Exception("Для такого дня немає занять"); }//TODO: Предусмотреть выходные дни
+                case 6: return Saturday;
+                case 7: return Sunday;
+                default: { throw new Exception("Для такого дня немає занять"); }
             }
         }
 
@@ -459,6 +463,37 @@ namespace ReSchedule
 
             List<LessonPair> lesson = AllCurrentInfo.GetDaysLessons(CurrentNumberOfDay);
 
+            if (lesson.Count == 0)
+            {
+                AEIW.BorderLesson1.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson2.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson3.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson4.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson5.Visibility = Visibility.Hidden;
+                AEIW.BorderLesson6.Visibility = Visibility.Hidden;
+                AEIW.WeekendPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AEIW.BorderLesson1.Visibility = Visibility.Visible;
+                AEIW.BorderLesson2.Visibility = Visibility.Visible;
+                AEIW.BorderLesson3.Visibility = Visibility.Visible;
+                AEIW.BorderLesson4.Visibility = Visibility.Visible;
+                AEIW.BorderLesson5.Visibility = Visibility.Visible;
+                AEIW.BorderLesson6.Visibility = Visibility.Visible;
+                AEIW.WeekendPanel.Visibility = Visibility.Hidden;
+            }
+
+            if (lesson.Count != 0)
+            {
+                InformationAboutLessons = new List<LessonInfo>();
+
+                for (int i = 0; i < 6; i++)
+                {
+                    InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
+                }
+            }
+
             CurrentSettings = AllCurrentInfo;
 
             ManageLoop = new DispatcherTimer();
@@ -472,35 +507,6 @@ namespace ReSchedule
             RemakeContextMenuMouseOver();
 
             SyncMessages();
-
-            if (lesson.Count == 0)
-            {
-                AEIW.BorderLesson1.Visibility = Visibility.Hidden;
-                AEIW.BorderLesson2.Visibility = Visibility.Hidden;
-                AEIW.BorderLesson3.Visibility = Visibility.Hidden;
-                AEIW.BorderLesson4.Visibility = Visibility.Hidden;
-                AEIW.BorderLesson5.Visibility = Visibility.Hidden;
-                AEIW.BorderLesson6.Visibility = Visibility.Hidden;
-                AEIW.WeekendPanel.Visibility = Visibility.Visible;
-                return;
-            }
-            else
-            {
-                AEIW.BorderLesson1.Visibility = Visibility.Visible;
-                AEIW.BorderLesson2.Visibility = Visibility.Visible;
-                AEIW.BorderLesson3.Visibility = Visibility.Visible;
-                AEIW.BorderLesson4.Visibility = Visibility.Visible;
-                AEIW.BorderLesson5.Visibility = Visibility.Visible;
-                AEIW.BorderLesson6.Visibility = Visibility.Visible;
-                AEIW.WeekendPanel.Visibility = Visibility.Hidden;
-            }
-
-            InformationAboutLessons = new List<LessonInfo>();
-
-            for (int i = 0; i < 6; i++)
-            {
-                InformationAboutLessons.Add(new LessonInfo((GetWeekMode() ? lesson[i].Lessons2 : lesson[i].Lessons1), lesson[i].LessonBegin, lesson[i].LessonEnd));
-            }
         }
 
         static void SyncMessages()
@@ -1629,7 +1635,8 @@ namespace ReSchedule
                 }
                 else
                 {
-                    //Если файл не удалось считать
+                    MessageBox.Show("Неможливо прочитати дані файлу, тому що вони некоректні або пошкоджені");
+                    return;
                 }
             }
         }
@@ -1678,13 +1685,17 @@ namespace ReSchedule
                         }
                         else
                         {
-                            //Если не удалось считать
+                            DropRectangle_DragLeave(sender, e);
+                            MessageBox.Show("Неможливо прочитати дані файлу, тому що вони некоректні або пошкоджені");
+                            return;
                         }
 
                     }
                     else
                     {
-                        //Если файл не тот
+                        DropRectangle_DragLeave(sender, e);
+                        MessageBox.Show("Неможливо прочитати дані файлу, тому що він неправильного розширення");
+                        return;
                     }
                     break;
                 }
